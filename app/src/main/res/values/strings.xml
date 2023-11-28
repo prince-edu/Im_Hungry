@@ -1,0 +1,50 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="ExtraTranslation">I´m Hungry!</string>
+    <string name="log_in">Acceder</string>
+    <string name="user_name">"Usuario"</string>
+    <string name="password">Contraseña</string>
+    <string name="sing_in">¿Sin cuenta? \nRegístrate aquí.</string>
+    <string name="title_activity_menu_principal">Menu principal</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Ajustes</string>
+
+    <string name="title_activity_comprador_menu_principal">CompradorMenuPrincipalActivity</string>
+    <string name="menu_profile">Mi perfil</string>
+    <string name="menu_my_orders">Mis órdenes</string>
+    <string name="menu_favorites">Mis favoritos</string>
+    <string name="chats">Chats</string>
+    <string name="title_activity_vendedor_menu_principal">VendedorMenuPrincipalActivity</string>
+    <string name="softboys_title">"\@Team Soft-Boys "</string>
+
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="menu_home">Inicio</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="sing_up_2">Regístrate</string>
+    <string name="matricula">Matricula</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido_paterno">Apellido Paterno</string>
+    <string name="apellido_materno">Apellido Materno</string>
+    <string name="correo_institucional">Correo Institucional</string>
+    <string name="password_singup">Contraseña</string>
+    <string name="sing_up">Regístrate</string>
+    <string name="vendedor">Vendedor</string>
+    <string name="comprador">Comprador</string>
+    <string name="lugar1">Escaleras economía</string>
+    <string name="lugar2">Escaleras FEI</string>
+    <string name="profile_pic">Foto perfil</string>
+    <string name="picture">Foto</string>
+    <string name="crendential_pic">Foto Credencial</string>
+    <string name="registrar_producto">Registrar producto</string>
+    <string name="descripcion">Descripción</string>
+    <string name="apellido_cantidad">Cantidad</string>
+    <string name="hora_venta_inicial">Hora venta inicial</string>
+    <string name="hora_venta_final">Hora venta final</string>
+    <string name="precio">Precio</string>
+</resources>
