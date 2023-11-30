@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/im_hungry_background">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="394dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sing_up_2"
+            android:textColor="@color/white"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/textView3"
+            tools:ignore="TextContrastCheck,VisualLintOverlap" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="@string/sing_up_2"
+            android:textColor="@color/black"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/linearLayout"
+            tools:ignore="TextSizeCheck,TextContrastCheck" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="315dp"
+            android:layout_height="500dp"
+            android:alpha="0.7"
+            android:background="@drawable/im_hungry_solid_black_background"
+            app:cardCornerRadius="45sp"
+            app:cardElevation="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                android:src="@drawable/im_hungry_solid_black_background" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/text_view_matricula"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/matricula"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/text_view_nombre"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/nombre"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+
+                <EditText
+                    android:id="@+id/text_view_apellidoP"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/apellido_paterno"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/text_view_apellidoM"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/apellido_materno"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/text_view_correoInstitucional"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/correo_institucional"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/text_view_password_singin"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/password_singup"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp">
+
+                    <RadioGroup
+                        android:id="@+id/radiogroup_type"
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        app:layout_column="0"
+                        app:layout_row="0" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonVendedor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/vendedor"
+                        android:textColor="@color/white"
+                        app:layout_column="0"
+                        app:layout_row="0"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonComprador"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="40dp"
+                        android:text="@string/comprador"
+                        android:textColor="@color/white"
+                        app:layout_column="0"
+                        app:layout_row="0"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button_profile_pic"
+                        android:layout_width="112dp"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/transparent"
+                        android:text="@string/profile_pic"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_column="1"
+                        app:layout_row="0"
+                        tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button_crendential_pic"
+                        android:layout_width="112dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:background="@color/transparent"
+                        android:text="@string/crendential_pic"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_column="1"
+                        app:layout_row="0"
+                        tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
+
+                </androidx.gridlayout.widget.GridLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_register"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/transparent"
+                    android:text="@string/sing_up"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

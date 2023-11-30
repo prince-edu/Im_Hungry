@@ -155,7 +155,7 @@
 
 
         <TextView
-            android:id="@+id/button_sing_in"
+            android:id="@+id/button_sing_up"
             android:layout_width="111dp"
             android:layout_height="27dp"
             android:layout_gravity="center_horizontal"
@@ -178,7 +178,7 @@
             android:layout_marginTop="15dp"
             android:alpha="0.6"
             android:background="@color/black"
-            app:cardCornerRadius="30dp"
+            app:cardCornerRadius="50dp"
             app:cardElevation="21dp"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"

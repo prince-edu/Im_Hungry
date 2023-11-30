@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imhungry.R;
@@ -19,9 +20,10 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
+        TextView textViewRegistro = findViewById(R.id.button_sing_up);
+
         Button buttonLogin = findViewById(R.id.button_login);
         buttonLogin.setOnClickListener(v->{
-            Log.d("ActivityMain", "haciendio click");
 
                 EditText usuarioET = findViewById(R.id.text_view_username);
                 EditText passwordET = findViewById(R.id.text_view_password);
@@ -51,6 +53,13 @@ public class LogInActivity extends AppCompatActivity {
 
                     }
                 }
+        });
+
+        textViewRegistro.setOnClickListener(v->{
+
+            Intent intent = new Intent(this, SingUpActivity.class);
+            startActivity(intent);
+
         });
 
     }
