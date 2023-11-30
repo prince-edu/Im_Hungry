@@ -178,7 +178,7 @@
             android:layout_marginTop="15dp"
             android:alpha="0.6"
             android:background="@color/black"
-            app:cardCornerRadius="80dp"
+            app:cardCornerRadius="30dp"
             app:cardElevation="21dp"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.imhungry.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_my_profile"
+        android:name="com.example.imhungry.ui.profile.MyProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_my_profile" />
+    <fragment
+        android:id="@+id/nav_my_orders"
+        android:name="com.example.imhungry.ui.orders.MyOrdersFragment"
+        android:label="fragment_my_orders"
+        tools:layout="@layout/fragment_my_orders" />
+    <fragment
+        android:id="@+id/nav_my_favorites"
+        android:name="com.example.imhungry.ui.favorites.MyFavoriteFragment"
+        android:label="fragment_my_favorites"
+        tools:layout="@layout/fragment_my_favorite" />
+    <fragment
+        android:id="@+id/nav_my_chats"
+        android:name="com.example.imhungry.ui.chats.ChatsFragment"
+        android:label="fragment_my_chats"
+        tools:layout="@layout/fragment_chats" />
+
+</navigation>

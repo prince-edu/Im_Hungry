@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,8 +18,6 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
-        Log.d("ActivityMain", "Hola");
 
         Button buttonLogin = findViewById(R.id.button_login);
         buttonLogin.setOnClickListener(v->{
@@ -45,7 +42,8 @@ public class LogInActivity extends AppCompatActivity {
                     if(usuario.equals("Rau") && password.equals("123")){
 
                         Toast.makeText(LogInActivity.this, "Exito", Toast.LENGTH_SHORT).show();
-
+                        Intent intent = new Intent(this, MainMenuActivity.class);
+                        startActivity(intent);
 
                     }else{
 
