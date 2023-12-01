@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/im_hungry_background">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="394dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registrar_producto"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewTitulo2"
+            app:layout_constraintEnd_toEndOf="@+id/textViewTitulo2"
+            app:layout_constraintStart_toStartOf="@+id/textViewTitulo2"
+            app:layout_constraintTop_toTopOf="@+id/textViewTitulo2"
+            tools:ignore="TextContrastCheck,VisualLintOverlap" />
+
+        <TextView
+            android:id="@+id/textViewTitulo2"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="@string/registrar_producto"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/linearLayout"
+            tools:ignore="TextSizeCheck,TextContrastCheck" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="315dp"
+            android:layout_height="500dp"
+            android:alpha="0.7"
+            android:background="@drawable/im_hungry_solid_black_background"
+            app:cardCornerRadius="45sp"
+            app:cardElevation="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                android:src="@drawable/im_hungry_solid_black_background" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/text_view_nombre_producto"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/nombre"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/text_view_descripcion"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/descripcion"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+
+                <EditText
+                    android:id="@+id/text_view_cantidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/apellido_cantidad"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/text_view_hora_inicial"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/hora_venta_inicial"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/text_view_hora_final"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/hora_venta_final"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/text_view_precio"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/precio"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp">
+
+                    <RadioGroup
+                        android:id="@+id/radiogroup_type"
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        app:layout_column="0"
+                        app:layout_row="0" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonVendedor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/lugar1"
+                        android:textColor="@color/white"
+                        app:layout_column="0"
+                        app:layout_row="0"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonComprador"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="40dp"
+                        android:text="@string/lugar2"
+                        android:textColor="@color/white"
+                        app:layout_column="0"
+                        app:layout_row="0"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button_picture"
+                        android:layout_width="69dp"
+                        android:layout_height="31dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/transparent"
+                        android:text="@string/picture"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_column="1"
+                        android:layout_marginStart="15dp"
+                        app:layout_row="0"
+                        tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
+
+
+
+                </androidx.gridlayout.widget.GridLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_register"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/transparent"
+                    android:text="@string/sing_up"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

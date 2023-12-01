@@ -47,4 +47,10 @@
     <string name="hora_venta_inicial">Hora venta inicial</string>
     <string name="hora_venta_final">Hora venta final</string>
     <string name="precio">Precio</string>
+    <string name="menu_mis_productos">Mis productos</string>
+    <string name="menu_my_statistics">Mis estadisticas</string>
+    <string name="menu_registrer_product">Registrar producto</string>
+    <string name="products">Productos</string>
+    <string name="menu_my_products">Mis Productos</string>
+    <string name="menu_register_product">Registrar Producto</string>
 </resources>

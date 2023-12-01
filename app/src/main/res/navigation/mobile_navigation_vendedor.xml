@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_vendedor"
+    app:startDestination="@+id/nav_my_products">
+
+    <fragment
+        android:id="@+id/nav_my_products"
+        android:name="com.example.imhungry.ui.products.MyProductsFragment"
+        android:label="@string/menu_my_products"
+        tools:layout="@layout/fragment_products" />
+    <fragment
+        android:id="@+id/nav_my_profile"
+        android:name="com.example.imhungry.ui.profile.MyProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_my_profile" />
+    <fragment
+        android:id="@+id/nav_my_orders_vendedor"
+        android:name="com.example.imhungry.ui.orders_vendedor.MyOrdersVendedorFragment"
+        android:label="fragment_my_orders_vendedor"
+        tools:layout="@layout/fragment_my_orders_vendedor" />
+    <fragment
+        android:id="@+id/nav_register_product"
+        android:name="com.example.imhungry.ui.products.RegisterProductFragment"
+        android:label="fragment_register_product"
+        tools:layout="@layout/fragment_register_product" />
+    <fragment
+        android:id="@+id/nav_my_statistics"
+        android:name="com.example.imhungry.ui.statistics.MyStatisticsFragment"
+        android:label="fragment_my_statistics"
+        tools:layout="@layout/fragment_my_statistics" />
+    <fragment
+        android:id="@+id/nav_my_chats"
+        android:name="com.example.imhungry.ui.chats.ChatsFragment"
+        android:label="fragment_my_chats"
+        tools:layout="@layout/fragment_chats" />
+
+</navigation>

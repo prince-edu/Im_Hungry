@@ -43,7 +43,7 @@ public class LogInActivity extends AppCompatActivity {
                     if(usuario.equals("Rau") && password.equals("123")){
 
                         Toast.makeText(LogInActivity.this, "Exito", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(this, MainMenuActivity.class);
+                        Intent intent = new Intent(this, MainMenuVendedorActivity.class);
                         startActivity(intent);
 
                     }else{

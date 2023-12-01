@@ -5,6 +5,8 @@ public class Estudiantes {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
+    private Boolean tipoComprador;
+    private Boolean tipoVendedor;
     private String correoInstitucional;
     private String password;
 
