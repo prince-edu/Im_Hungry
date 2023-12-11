@@ -1,24 +1,25 @@
 package com.example.imhungry.Domain;
 
-public class Estudiantes {
+import com.squareup.moshi.Json;
+
+public class EstudianteResponse {
     private String matricula;
     private String nombre;
+
+    @Json(name="apellido_paterno")
     private String apellidoPaterno;
+    @Json(name="apellido_materno")
     private String apellidoMaterno;
-    private Boolean tipoComprador;
-    private Boolean tipoVendedor;
+
+    @Json(name="correo_institucional")
     private String correoInstitucional;
     private String password;
-
-    public Estudiantes(String matricula, String nombre, String apellidoPaterno, String apellidoMaterno,
-                       String correoInstitucional, String password) {
-        this.matricula = matricula;
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.correoInstitucional = correoInstitucional;
-        this.password = password;
-    }
+    private String perfilVendedor;
+    private String perfilComprador;
+    @Json(name="foto_perfil")
+    private String fotoPerfil;
+    @Json(name="foto_credencial")
+    private String fotoCredencial;
 
     public String getMatricula() {
         return matricula;
@@ -66,5 +67,37 @@ public class Estudiantes {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPerfilVendedor() {
+        return perfilVendedor;
+    }
+
+    public void setPerfilVendedor(String perfilVendedor) {
+        this.perfilVendedor = perfilVendedor;
+    }
+
+    public String getPerfilComprador() {
+        return perfilComprador;
+    }
+
+    public void setPerfilComprador(String perfilComprador) {
+        this.perfilComprador = perfilComprador;
+    }
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+
+    public String getFotoCredencial() {
+        return fotoCredencial;
+    }
+
+    public void setFotoCredencial(String fotoCredencial) {
+        this.fotoCredencial = fotoCredencial;
     }
 }

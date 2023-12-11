@@ -3,10 +3,10 @@ package com.example.imhungry.Domain;
 import java.util.Date;
 
 public class Producto {
-    private int idProducto;
+    private int id_producto;
     private String nombre;
     private String descripcion;
-    private Integer cantidadDisponible;
+    private int cantidadDisponible;
     private Date horaVentaInicial;
     private Date horaVentaFinal;
     private String puntoEncuentro;
@@ -14,10 +14,10 @@ public class Producto {
     private String estado;
     private String foto;
 
-    public Producto(int idProducto, String nombre, String descripcion, Integer cantidadDisponible,
-                    Date horaVentaInicial, Date horaVentaFinal, String puntoEncuentro,
-                    Double precio, String estado, String foto) {
-        this.idProducto = idProducto;
+    public Producto(int id_producto, String nombre, String descripcion, int cantidadDisponible,
+                    Date horaVentaInicial, Date horaVentaFinal, String puntoEncuentro, Double precio,
+                    String estado, String foto) {
+        this.id_producto = id_producto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidadDisponible = cantidadDisponible;
@@ -29,12 +29,12 @@ public class Producto {
         this.foto = foto;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public int getId_producto() {
+        return id_producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setId_producto(int id_producto) {
+        this.id_producto = id_producto;
     }
 
     public String getNombre() {
@@ -53,11 +53,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public Integer getCantidadDisponible() {
+    public int getCantidadDisponible() {
         return cantidadDisponible;
     }
 
-    public void setCantidadDisponible(Integer cantidadDisponible) {
+    public void setCantidadDisponible(int cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
     }
 

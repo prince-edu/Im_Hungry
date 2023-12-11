@@ -217,7 +217,7 @@
 
 
                 <androidx.gridlayout.widget.GridLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="280dp"
                     android:layout_height="88dp">
 
                     <RadioGroup

@@ -8,20 +8,20 @@ public class Pedido {
     private Date fechaPedido;
     private Double precioTotal;
     private String estado;
-    private int idVenta;
+    private int id_venta;
     private String matricula;
-    private int idProducto;
+    private int id_producto;
 
     public Pedido(int idPedido, String preferencias, Date fechaPedido, Double precioTotal,
-                  String estado, int idVenta, String matricula, int idProducto) {
+                  String estado, int id_venta, String matricula, int id_producto) {
         this.idPedido = idPedido;
         this.preferencias = preferencias;
         this.fechaPedido = fechaPedido;
         this.precioTotal = precioTotal;
         this.estado = estado;
-        this.idVenta = idVenta;
+        this.id_venta = id_venta;
         this.matricula = matricula;
-        this.idProducto = idProducto;
+        this.id_producto = id_producto;
     }
 
     public int getIdPedido() {
@@ -64,12 +64,12 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public int getIdVenta() {
-        return idVenta;
+    public int getId_venta() {
+        return id_venta;
     }
 
-    public void setIdVenta(int idVenta) {
-        this.idVenta = idVenta;
+    public void setId_venta(int id_venta) {
+        this.id_venta = id_venta;
     }
 
     public String getMatricula() {
@@ -80,11 +80,11 @@ public class Pedido {
         this.matricula = matricula;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public int getId_producto() {
+        return id_producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setId_producto(int id_producto) {
+        this.id_producto = id_producto;
     }
 }
