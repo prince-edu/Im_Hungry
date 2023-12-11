@@ -1,22 +1,22 @@
 package com.example.imhungry.Domain;
 
 public class Valoracion {
-    private int idValoracion;
+    private int id_valoracion;
     private String descripcion;
-    private Integer calificacion;
+    private int calificacion;
 
-    public Valoracion(int idValoracion, String descripcion, Integer calificacion) {
-        this.idValoracion = idValoracion;
+    public Valoracion(int id_valoracion, String descripcion, int calificacion) {
+        this.id_valoracion = id_valoracion;
         this.descripcion = descripcion;
         this.calificacion = calificacion;
     }
 
-    public int getIdValoracion() {
-        return idValoracion;
+    public int getId_valoracion() {
+        return id_valoracion;
     }
 
-    public void setIdValoracion(int idValoracion) {
-        this.idValoracion = idValoracion;
+    public void setId_valoracion(int id_valoracion) {
+        this.id_valoracion = id_valoracion;
     }
 
     public String getDescripcion() {
@@ -27,11 +27,11 @@ public class Valoracion {
         this.descripcion = descripcion;
     }
 
-    public Integer getCalificacion() {
+    public int getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(Integer calificacion) {
+    public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
 }

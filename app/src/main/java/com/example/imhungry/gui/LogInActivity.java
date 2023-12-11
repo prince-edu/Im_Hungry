@@ -79,7 +79,7 @@ public class LogInActivity extends AppCompatActivity {
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(API.getUrl()).addConverterFactory((MoshiConverterFactory.create())).build();
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<EstudianteResponse> call = apiService.estudiantesGetById(estudianteLogin.getMatricula());
+        Call<Estudiante> call = apiService.estudiantesGetById(estudianteLogin.getMatricula());
         call.enqueue(new Callback<EstudianteResponse>() {
             @Override
             public void onResponse(Call<EstudianteResponse> call, Response<EstudianteResponse> response) {

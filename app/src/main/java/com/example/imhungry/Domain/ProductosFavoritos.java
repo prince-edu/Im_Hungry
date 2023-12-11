@@ -3,12 +3,12 @@ package com.example.imhungry.Domain;
 public class ProductosFavoritos {
     private String idFavoritos;
     private String matricula;
-    private int idProducto;
+    private int id_producto;
 
-    public ProductosFavoritos(String idFavoritos, String matricula, int idProducto) {
+    public ProductosFavoritos(String idFavoritos, String matricula, int id_producto) {
         this.idFavoritos = idFavoritos;
         this.matricula = matricula;
-        this.idProducto = idProducto;
+        this.id_producto = id_producto;
     }
 
     public String getIdFavoritos() {
@@ -27,11 +27,11 @@ public class ProductosFavoritos {
         this.matricula = matricula;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public int getId_producto() {
+        return id_producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setId_producto(int id_producto) {
+        this.id_producto = id_producto;
     }
 }

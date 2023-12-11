@@ -40,7 +40,7 @@ public interface ApiService {
     Call<Estudiante[]> estudiantesGetAll();
 
     @GET("estudiantes/{matricula}")
-    Call<EstudianteResponse> estudiantesGetById(@Path("matricula") String matricula);
+    Call<Estudiante> estudiantesGetById(@Path("matricula") String matricula);
 
     @POST("estudiantes/")
     Call<Estudiante> estudiantesCreate(@Body Estudiante estudiante);

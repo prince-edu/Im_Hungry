@@ -4,33 +4,34 @@ import android.graphics.Bitmap;
 
 import com.squareup.moshi.Json;
 
+//@Json(name="apellido_paterno")
 public class Estudiante {
     private String matricula;
     private String nombre;
-
-    @Json(name="apellido_paterno")
     private String apellidoPaterno;
-    @Json(name="apellido_materno")
     private String apellidoMaterno;
-
-    @Json(name="correo_institucional")
     private String correoInstitucional;
     private String password;
-    private String perfilVendedor;
-    private String perfilComprador;
-    @Json(name="foto_perfil")
+    private String tipoVendedor;
+    private String tipoComprador;
     private String fotoPerfil;
-    @Json(name="foto_credencial")
     private String fotoCredencial;
 
-
-    public Estudiante(String matricula, String password){
+    public Estudiante(String matricula, String nombre, String apellidoPaterno, String apellidoMaterno,
+                      String correoInstitucional, String password, String tipoVendedor, String tipoComprador,
+                      String fotoPerfil, String fotoCredencial) {
         this.matricula = matricula;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.correoInstitucional = correoInstitucional;
         this.password = password;
+        this.tipoVendedor = tipoVendedor;
+        this.tipoComprador = tipoComprador;
+        this.fotoPerfil = fotoPerfil;
+        this.fotoCredencial = fotoCredencial;
     }
-    public Estudiante(){
 
-    }
     public String getMatricula() {
         return matricula;
     }
@@ -79,34 +80,35 @@ public class Estudiante {
         this.password = password;
     }
 
-    public String getPerfilVendedor() {
-        return perfilVendedor;
+    public String getTipoVendedor() {
+        return tipoVendedor;
     }
 
-    public void setPerfilVendedor(String perfilVendedor) {
-        this.perfilVendedor = perfilVendedor;
+    public void setTipoVendedor(String tipoVendedor) {
+        this.tipoVendedor = tipoVendedor;
     }
 
-    public String getPerfilComprador() {
-        return perfilComprador;
+    public String getTipoComprador() {
+        return tipoComprador;
     }
 
-    public void setPerfilComprador(String perfilComprador) {
-        this.perfilComprador = perfilComprador;
-    }
-
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    public void setTipoComprador(String tipoComprador) {
+        this.tipoComprador = tipoComprador;
     }
 
     public String getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoCredencial(String fotoCredencial) {
-        this.fotoCredencial = fotoCredencial;
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
+
     public String getFotoCredencial() {
         return fotoCredencial;
+    }
+
+    public void setFotoCredencial(String fotoCredencial) {
+        this.fotoCredencial = fotoCredencial;
     }
 }
