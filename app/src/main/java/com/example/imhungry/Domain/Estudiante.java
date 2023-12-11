@@ -32,6 +32,12 @@ public class Estudiante {
         this.fotoCredencial = fotoCredencial;
     }
 
+    public Estudiante(String matricula, String password){
+        this.matricula = matricula;
+        this.password = password;
+    }
+    public Estudiante(){};
+
     public String getMatricula() {
         return matricula;
     }

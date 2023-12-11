@@ -80,15 +80,17 @@ public class LogInActivity extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(API.getUrl()).addConverterFactory((MoshiConverterFactory.create())).build();
         ApiService apiService = retrofit.create(ApiService.class);
         Call<Estudiante> call = apiService.estudiantesGetById(estudianteLogin.getMatricula());
-        call.enqueue(new Callback<EstudianteResponse>() {
+        call.enqueue(new Callback<Estudiante>() {
             @Override
-            public void onResponse(Call<EstudianteResponse> call, Response<EstudianteResponse> response) {
+            public void onResponse(Call<Estudiante> call, Response<Estudiante> response) {
                 if(response.isSuccessful()){
 
-                    EstudianteResponse usuario = response.body();
+                    Estudiante usuario = response.body();
                     Log.d("A", "onResponse: "+response.code());
                     Log.d("A", "onResponse: "+(response.body()));
                     Log.d("A", "onResponse: "+usuario.getMatricula());
+                    Log.d("A", "onResponse: "+usuario.getNombre());
+                    Log.d("A", "onResponse: "+usuario.getPassword());
 
                    // usuario2.setMatricula(usuario.getMatricula());
 
@@ -100,20 +102,20 @@ public class LogInActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<EstudianteResponse> call, Throwable t) {
-                Toast.makeText(LogInActivity.this, "Error al iniciar sesiónv" + usuario2.getMatricula() + " " + usuario2.getPassword(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Estudiante> call, Throwable t) {
+                Toast.makeText(LogInActivity.this, "Error al iniciar sesión " + usuario2.getMatricula() + " " + usuario2.getPassword(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public void iniciarSesion(@NonNull Estudiante estudiante){
 
-        String tipoPerfilComprador = estudiante.getPerfilComprador();
-        String tipoPerfilVendedor = estudiante.getPerfilVendedor();
+        String tipoPerfilComprador = estudiante.getTipoComprador();
+        String tipoPerfilVendedor = estudiante.getTipoVendedor();
 
-        if(tipoPerfilVendedor.equals("S") && tipoPerfilComprador.equals("S")){
+        if(tipoPerfilVendedor.equals("si") && tipoPerfilComprador.equals("si")){
 
-        }else if(tipoPerfilComprador.equals("S")){
+        }else if(tipoPerfilComprador.equals("si")){
             Intent intent = new Intent(this, MainMenuCompradorActivity.class);
             startActivity(intent);
         }else{
