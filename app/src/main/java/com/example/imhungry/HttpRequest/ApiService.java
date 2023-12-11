@@ -1,7 +1,8 @@
 package com.example.imhungry.HttpRequest;
 
-import com.example.imhungry.Domain.Estudiantes;
+import com.example.imhungry.Domain.Estudiante;
 import com.example.imhungry.Domain.Comprador;
+import com.example.imhungry.Domain.EstudianteResponse;
 import com.example.imhungry.Domain.ProductosFavoritos;
 import com.example.imhungry.Domain.Pedido;
 import com.example.imhungry.Domain.Producto;
@@ -10,17 +11,13 @@ import com.example.imhungry.Domain.Vendedor;
 import com.example.imhungry.Domain.Venta;
 
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 
@@ -35,27 +32,27 @@ public interface ApiService {
     @DELETE("compradores/{id}")
     Call<Comprador> eliminarComprador(@Path("id") String id);
 
-    // Estudiantes
+    // Estudiante
     @POST("estudiantes/login")
-    Call<Estudiantes> estudiantesLogin(@Body Estudiantes credenciales);
+    Call<Estudiante> estudiantesLogin(@Body Estudiante credenciales);
 
     @GET("estudiantes/all")
-    Call<Estudiantes[]> estudiantesGetAll();
+    Call<Estudiante[]> estudiantesGetAll();
 
-    @GET("estudiantes/{id}")
-    Call<Estudiantes> estudiantesGetById(@Path("id") String id);
+    @GET("estudiantes/{matricula}")
+    Call<EstudianteResponse> estudiantesGetById(@Path("matricula") String matricula);
 
     @POST("estudiantes/")
-    Call<Estudiantes> estudiantesCreate(@Body Estudiantes estudiante);
+    Call<Estudiante> estudiantesCreate(@Body Estudiante estudiante);
 
     @PUT("estudiantes/{id}")
-    Call<Estudiantes> estudiantesUpdate(@Path("id") String id, @Body Estudiantes estudiante);
+    Call<Estudiante> estudiantesUpdate(@Path("id") String id, @Body Estudiante estudiante);
 
     @PATCH("estudiantes/{id}")
-    Call<Estudiantes> estudiantesUpdatePass(@Path("id") String id, @Body Estudiantes contraseña);
+    Call<Estudiante> estudiantesUpdatePass(@Path("id") String id, @Body Estudiante contraseña);
 
     @DELETE("estudiantes/{id}")
-    Call<Estudiantes> estudiantesDelete(@Path("id") String id);
+    Call<Estudiante> estudiantesDelete(@Path("id") String id);
 
     // Pedidos
     @GET("pedidos/all")
