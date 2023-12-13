@@ -35,5 +35,10 @@
         android:name="com.example.imhungry.ui.chats.ChatsFragment"
         android:label="fragment_my_chats"
         tools:layout="@layout/fragment_chats" />
+    <fragment
+        android:id="@+id/log_out"
+        android:name="com.example.imhungry.ui.logout.LogOutFragment"
+        android:label="fragment_log_out"
+        tools:layout="@layout/fragment_log_out" />
 
 </navigation>

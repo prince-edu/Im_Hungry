@@ -1,8 +1,10 @@
 package com.example.imhungry.gui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -52,19 +54,20 @@ public class LogInActivity extends AppCompatActivity {
                 String usuario = usuarioET.getText().toString();
                 String password = passwordET.getText().toString();
 
-
-
             if(TextUtils.isEmpty(usuario)){
 
-                Toast.makeText(LogInActivity.this, "Debes ingresar un usuario", Toast.LENGTH_SHORT).show();
-//agregar validacion de caracteres.
+                mostrarToast("Debes ingresar un usuario");
+
+            }else if(!validarCaracteres(usuario)) {
+
+                mostrarToast("La matrícula contiene caracteres inválidos");
+
             }else if(TextUtils.isEmpty(password)){
 
-                Toast.makeText(LogInActivity.this, "Debes ingresar la contraseña", Toast.LENGTH_SHORT).show();
+                mostrarToast("Debes ingresar la contraseña");
 
             }else {
                 estudianteLogin = new Estudiante(usuario, password);
-                Toast.makeText(this, estudianteLogin.getMatricula() + " " + estudianteLogin.getPassword(), Toast.LENGTH_SHORT).show();
                 api();
 
             }
@@ -87,12 +90,13 @@ public class LogInActivity extends AppCompatActivity {
         call.enqueue(new Callback<EstudianteResponse>() {
             @Override
             public void onResponse(Call<EstudianteResponse> call, Response<EstudianteResponse> response) {
-
-                iniciarSesion((response.body().getEstudiante()));
-
+                if((response.body().getEstudiante() == null)){
+                    mostrarToast("La matrícula que has ingresado no se encuentra registrada");
+                }else {
+                    mostrarToast("Éxito");
+                    iniciarSesion((response.body().getEstudiante()));
+                }
             }
-
-
             @Override
             public void onFailure(Call<EstudianteResponse> call, Throwable t) {
                 mostrarToast("Error al iniciar sesión");
@@ -107,16 +111,56 @@ public class LogInActivity extends AppCompatActivity {
 
         if(tipoPerfilVendedor.equals("si") && tipoPerfilComprador.equals("si")){
 
+            mostrarAlertaOpciones();
+
         }else if(tipoPerfilComprador.equals("si")){
-            Intent intent = new Intent(this, MainMenuCompradorActivity.class);
-            startActivity(intent);
+
+            irAVentanaComprador();
+
         }else{
-            Intent intent = new Intent(this, MainMenuVendedorActivity.class);
-            startActivity(intent);
+
+            irAVentanaVendedor();
+
         }
     }
 
     public void mostrarToast(String mensaje){
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean validarCaracteres(String cadena) {
+        return cadena != null && cadena.matches("[a-zA-Z0-9]+");
+    }
+
+    public void mostrarAlertaOpciones(){
+
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Por favor elige una opción")
+                .setMessage("¿Con qué tipo de perfil te gustaría iniciar sesión?");
+
+        builder.setPositiveButton("Comprador", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                irAVentanaComprador();
+            }
+        });
+
+        builder.setNegativeButton("Vendedor", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                irAVentanaVendedor();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+    public void irAVentanaComprador(){
+        Intent intent = new Intent(this, MainMenuCompradorActivity.class);
+        startActivity(intent);
+    }
+    public void irAVentanaVendedor(){
+        Intent intent = new Intent(this, MainMenuVendedorActivity.class);
+        startActivity(intent);
     }
 }

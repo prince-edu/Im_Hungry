@@ -53,4 +53,6 @@
     <string name="products">Productos</string>
     <string name="menu_my_products">Mis Productos</string>
     <string name="menu_register_product">Registrar Producto</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
