@@ -28,6 +28,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 public class LogInActivity extends AppCompatActivity {
 
     Estudiante estudianteLogin;
+    Retrofit retrofit;
 
 
     @Override
@@ -36,6 +37,11 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         TextView textViewRegistro = findViewById(R.id.button_sing_up);
+
+         retrofit = new Retrofit.Builder()
+                .baseUrl(API.getUrl())
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build();
 
         Button buttonLogin = findViewById(R.id.button_login);
         buttonLogin.setOnClickListener(v->{
@@ -51,13 +57,14 @@ public class LogInActivity extends AppCompatActivity {
             if(TextUtils.isEmpty(usuario)){
 
                 Toast.makeText(LogInActivity.this, "Debes ingresar un usuario", Toast.LENGTH_SHORT).show();
-
+//agregar validacion de caracteres.
             }else if(TextUtils.isEmpty(password)){
 
                 Toast.makeText(LogInActivity.this, "Debes ingresar la contraseña", Toast.LENGTH_SHORT).show();
 
             }else {
                 estudianteLogin = new Estudiante(usuario, password);
+                Toast.makeText(this, estudianteLogin.getMatricula() + " " + estudianteLogin.getPassword(), Toast.LENGTH_SHORT).show();
                 api();
 
             }
@@ -75,40 +82,25 @@ public class LogInActivity extends AppCompatActivity {
 
     public void api(){
 
-         final Estudiante usuario2 = new Estudiante();
-
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(API.getUrl()).addConverterFactory((MoshiConverterFactory.create())).build();
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<Estudiante> call = apiService.estudiantesGetById(estudianteLogin.getMatricula());
-        call.enqueue(new Callback<Estudiante>() {
+        Call<EstudianteResponse> call = apiService.estudiantesGetById(estudianteLogin.getMatricula());
+        call.enqueue(new Callback<EstudianteResponse>() {
             @Override
-            public void onResponse(Call<Estudiante> call, Response<Estudiante> response) {
-                if(response.isSuccessful()){
+            public void onResponse(Call<EstudianteResponse> call, Response<EstudianteResponse> response) {
 
-                    Estudiante usuario = response.body();
-                    Log.d("A", "onResponse: "+response.code());
-                    Log.d("A", "onResponse: "+(response.body()));
-                    Log.d("A", "onResponse: "+usuario.getMatricula());
-                    Log.d("A", "onResponse: "+usuario.getNombre());
-                    Log.d("A", "onResponse: "+usuario.getPassword());
+                iniciarSesion((response.body().getEstudiante()));
 
-                   // usuario2.setMatricula(usuario.getMatricula());
-
-                    //iniciarSesion(usuario);
-
-                }else{
-                    Toast.makeText(LogInActivity.this, "El usuario que has ingresado no existe", Toast.LENGTH_SHORT).show();
-                }
             }
 
+
             @Override
-            public void onFailure(Call<Estudiante> call, Throwable t) {
-                Toast.makeText(LogInActivity.this, "Error al iniciar sesión " + usuario2.getMatricula() + " " + usuario2.getPassword(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<EstudianteResponse> call, Throwable t) {
+                mostrarToast("Error al iniciar sesión");
             }
         });
     }
 
-    public void iniciarSesion(@NonNull Estudiante estudiante){
+    public void iniciarSesion(Estudiante estudiante){
 
         String tipoPerfilComprador = estudiante.getTipoComprador();
         String tipoPerfilVendedor = estudiante.getTipoVendedor();
@@ -122,5 +114,9 @@ public class LogInActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainMenuVendedorActivity.class);
             startActivity(intent);
         }
+    }
+
+    public void mostrarToast(String mensaje){
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 }

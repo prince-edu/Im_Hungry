@@ -2,6 +2,8 @@ package com.example.imhungry.Domain;
 
 import android.graphics.Bitmap;
 
+import androidx.annotation.NonNull;
+
 import com.squareup.moshi.Json;
 
 //@Json(name="apellido_paterno")
@@ -116,5 +118,12 @@ public class Estudiante {
 
     public void setFotoCredencial(String fotoCredencial) {
         this.fotoCredencial = fotoCredencial;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return matricula + " " + nombre + " " + apellidoPaterno + " " + apellidoMaterno + " " + correoInstitucional +
+                " " + password + "  " + fotoPerfil;
     }
 }
