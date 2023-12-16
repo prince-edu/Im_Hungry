@@ -10,19 +10,22 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.imhungry.Domain.Estudiante;
 import com.example.imhungry.R;
 
 import java.io.IOException;
 
 public class SingUpActivity extends AppCompatActivity {
-    private Bitmap fotoPerfil;
-    private Bitmap fotoCredencial;
+    private String fotoPerfil;
+    private String fotoCredencial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,10 @@ public class SingUpActivity extends AppCompatActivity {
         Button buttonRegister = findViewById(R.id.button_register);
         Button buttonFotoPerfil = findViewById(R.id.button_profile_pic);
         Button buttonFotoCredencial = findViewById(R.id.button_crendential_pic);
+        CheckBox cbVendedor = findViewById(R.id.checkboxVendedor);
+        CheckBox cbComprador = findViewById(R.id.checkboxComprador);
 
-        buttonRegister.setOnClickListener(v->{
+        buttonRegister.setOnClickListener(v-> {
 
             EditText etNombre = findViewById(R.id.text_view_nombre);
             EditText etMatricula = findViewById(R.id.text_view_matricula);
@@ -47,7 +52,40 @@ public class SingUpActivity extends AppCompatActivity {
             String apellidoP = etApellidoP.getText().toString();
             String matricula = etMatricula.getText().toString();
             String nombre = etNombre.getText().toString();
+            String vendedor = new String();//se ha inicializado este String ya que en la parte de abajo
+            String comprador = new String();//no permite usar el TextUtils.isEmpty() si solo se declara;
 
+            if (cbVendedor.isChecked()) {
+                vendedor = "si";
+            }
+            if (cbComprador.isChecked()) {
+                comprador = "si";
+            }
+
+
+            if(!validarMatricula(matricula)){
+                mostrarToast("No has ingresado una matrícula o contiene caracteres inválidos");
+            }else if(!validarNombre(nombre)){
+                mostrarToast("No has ingresado un nombre o contiene caracteres inválidos");
+            }else if(!validarNombre(apellidoP)){
+                mostrarToast("No has ingresado un apellido paterno o contiene caracteres inválidos");
+            }else if(!validarNombre(apellidoM)){
+                mostrarToast("No has ingresado un apellido materno o contiene caracteres inválidos");
+            }else if(!validarCorreo(correo)){
+                mostrarToast("No has ingresado un correo institucional o contiene caracteres inválidos");
+            }else if(TextUtils.isEmpty(password)){
+                mostrarToast("No has ingresado una contraseña");
+            }else if(TextUtils.isEmpty(fotoPerfil)){
+                mostrarToast("No has agregado una foto de perfil");
+            }else if(TextUtils.isEmpty(fotoCredencial)){
+                mostrarToast("No has ingresado una foto de tu credencial");
+            }else if(TextUtils.isEmpty(comprador) && TextUtils.isEmpty(vendedor)){
+                mostrarToast("Debes elegir al menos un rol");
+            }else{
+                Estudiante estudiante = new Estudiante(matricula, nombre, apellidoP, apellidoM, correo, password, vendedor, comprador,
+                fotoPerfil, fotoCredencial);
+                mostrarToast("estudiante creado");
+            }
         });
 
         ActivityResultLauncher<Intent> launcherImagenPerfil = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -59,7 +97,7 @@ public class SingUpActivity extends AppCompatActivity {
                             Uri imagenSeleccionadaUri = data.getData();
                             try {
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-                                fotoPerfil = bitmap;
+                                fotoPerfil = bitmap.toString();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -75,7 +113,7 @@ public class SingUpActivity extends AppCompatActivity {
                             Uri imagenSeleccionadaUri = data.getData();
                             try {
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-                                fotoPerfil = bitmap;
+                                fotoCredencial = bitmap.toString();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -94,5 +132,18 @@ public class SingUpActivity extends AppCompatActivity {
             launcherImagenCredencial.launch(intent);
 
         });
+    }
+
+    public void mostrarToast(String mensaje){
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+    public boolean validarNombre(String nombre) {
+        return nombre != null && nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s]+$");
+    }
+    public boolean validarMatricula(String matricula) {
+        return matricula != null && matricula.matches("[a-zA-Z0-9]+");
+    }
+    public boolean validarCorreo(String correo){
+        return correo != null && correo.matches("^[a-zA-Z0-9]+@estudiantes\\.uv\\.mx$");
     }
 }
