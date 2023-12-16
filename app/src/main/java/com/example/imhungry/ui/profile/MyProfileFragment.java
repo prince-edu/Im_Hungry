@@ -4,17 +4,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.imhungry.HttpRequest.API;
+import com.example.imhungry.R;
 import com.example.imhungry.databinding.FragmentMyProfileBinding;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class MyProfileFragment extends Fragment {
 
     private FragmentMyProfileBinding binding;
+    Retrofit retrofit;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -24,7 +31,13 @@ public class MyProfileFragment extends Fragment {
         binding = FragmentMyProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textProfile;
+        retrofit = new Retrofit.Builder()
+                .baseUrl(API.getUrl())
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build();
+
+
+        final TextView textView = binding.textView2;
         profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
@@ -34,4 +47,6 @@ public class MyProfileFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 }

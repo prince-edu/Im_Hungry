@@ -34,11 +34,10 @@
             android:textColor="@color/black"
             android:textSize="45sp"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="@+id/textView3"
             app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
             tools:ignore="TextContrastCheck,VisualLintOverlap" />
 
         <TextView
@@ -52,7 +51,7 @@
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="@+id/textView3"
             app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
             tools:ignore="TextContrastCheck,VisualLintOverlap" />
 
         <TextView
@@ -66,7 +65,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
 
         <androidx.cardview.widget.CardView
@@ -126,7 +125,6 @@
                     android:drawablePadding="12dp"
                     android:hint="@string/nombre"
                     android:importantForAutofill="no"
-                    android:inputType="textPassword"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -147,7 +145,6 @@
                     android:drawablePadding="12dp"
                     android:hint="@string/apellido_paterno"
                     android:importantForAutofill="no"
-                    android:inputType="textPassword"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -167,7 +164,6 @@
                     android:drawablePadding="12dp"
                     android:hint="@string/apellido_materno"
                     android:importantForAutofill="no"
-                    android:inputType="textPassword"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -187,7 +183,6 @@
                     android:drawablePadding="12dp"
                     android:hint="@string/correo_institucional"
                     android:importantForAutofill="no"
-                    android:inputType="textPassword"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -220,15 +215,9 @@
                     android:layout_width="280dp"
                     android:layout_height="88dp">
 
-                    <RadioGroup
-                        android:id="@+id/radiogroup_type"
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        app:layout_column="0"
-                        app:layout_row="0" />
 
-                    <RadioButton
-                        android:id="@+id/radioButtonVendedor"
+                    <CheckBox
+                        android:id="@+id/checkboxVendedor"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginStart="25dp"
@@ -239,8 +228,8 @@
                         app:layout_row="0"
                         tools:ignore="TouchTargetSizeCheck" />
 
-                    <RadioButton
-                        android:id="@+id/radioButtonComprador"
+                    <CheckBox
+                        android:id="@+id/checkboxComprador"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginStart="25dp"
@@ -256,6 +245,7 @@
                         android:layout_width="112dp"
                         android:layout_height="31dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginStart="38dp"
                         android:background="@color/transparent"
                         android:text="@string/profile_pic"
                         android:textAlignment="center"
@@ -271,6 +261,7 @@
                         android:layout_width="112dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
+                        android:layout_marginStart="38dp"
                         android:background="@color/transparent"
                         android:text="@string/crendential_pic"
                         android:textAlignment="center"
