@@ -19,13 +19,23 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.imhungry.Domain.Estudiante;
+import com.example.imhungry.Domain.EstudianteResponse;
+import com.example.imhungry.HttpRequest.API;
+import com.example.imhungry.HttpRequest.ApiService;
 import com.example.imhungry.R;
 
 import java.io.IOException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class SingUpActivity extends AppCompatActivity {
     private String fotoPerfil;
     private String fotoCredencial;
+    private Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,8 @@ public class SingUpActivity extends AppCompatActivity {
         Button buttonFotoCredencial = findViewById(R.id.button_crendential_pic);
         CheckBox cbVendedor = findViewById(R.id.checkboxVendedor);
         CheckBox cbComprador = findViewById(R.id.checkboxComprador);
+
+        retrofit = new Retrofit.Builder().baseUrl(API.getUrl()).addConverterFactory((GsonConverterFactory.create())).build();
 
         buttonRegister.setOnClickListener(v-> {
 
@@ -84,7 +96,8 @@ public class SingUpActivity extends AppCompatActivity {
             }else{
                 Estudiante estudiante = new Estudiante(matricula, nombre, apellidoP, apellidoM, correo, password, vendedor, comprador,
                 fotoPerfil, fotoCredencial);
-                mostrarToast("estudiante creado");
+                buscarEstudiante(estudiante);
+
             }
         });
 
@@ -145,5 +158,48 @@ public class SingUpActivity extends AppCompatActivity {
     }
     public boolean validarCorreo(String correo){
         return correo != null && correo.matches("^[a-zA-Z0-9]+@estudiantes\\.uv\\.mx$");
+    }
+
+    public void registrarEstudiante (Estudiante estudiante){
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<Estudiante> call = apiService.estudiantesCreate(estudiante);
+        call.enqueue(new Callback<Estudiante>() {
+            @Override
+            public void onResponse(Call<Estudiante> call, Response<Estudiante> response) {
+                if(response.isSuccessful()){
+                    mostrarToast("Registro éxitoso");
+                    finish();
+                }else{
+                    mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tarde");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Estudiante> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void buscarEstudiante(Estudiante estudiante){
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<EstudianteResponse> call = apiService.estudiantesGetById(estudiante.getMatricula());
+        call.enqueue(new Callback<EstudianteResponse>() {
+
+            @Override
+            public void onResponse(Call<EstudianteResponse> call, Response<EstudianteResponse> response) {
+                if((response.body().getEstudiante() == null)){
+                    registrarEstudiante(estudiante);
+                }else {
+                    mostrarToast("La matrícula que has ingresado ya se encuentra registrada");
+                }
+            }
+            @Override
+            public void onFailure(Call<EstudianteResponse> call, Throwable t) {
+                mostrarToast("Ha ocurrido un error");
+            }
+        });
     }
 }
