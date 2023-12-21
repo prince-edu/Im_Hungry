@@ -58,7 +58,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="315dp"
-            android:layout_height="500dp"
+            android:layout_height="530dp"
             android:alpha="0.7"
             android:background="@drawable/im_hungry_solid_black_background"
             app:cardCornerRadius="45sp"
@@ -80,18 +80,16 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
                 <EditText
-                    android:id="@+id/text_view_nombre_producto"
-                    android:layout_width="250dp"
+                    android:id="@+id/edit_text_id_producto"
+                    android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="50dp"
                     android:background="@color/transparent"
                     android:drawablePadding="12dp"
-                    android:hint="@string/nombre"
-                    android:importantForAutofill="no"
+                    android:hint="@string/id_producto"
                     android:inputType="text"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
@@ -101,7 +99,25 @@
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
                 <EditText
-                    android:id="@+id/text_view_descripcion"
+                    android:id="@+id/edit_text_nombre_producto"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@color/transparent"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/nombre"
+                    android:inputType="text"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/edit_text_descripcion"
                     android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
@@ -111,8 +127,6 @@
                     android:background="@color/transparent"
                     android:drawablePadding="12dp"
                     android:hint="@string/descripcion"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -122,7 +136,7 @@
 
 
                 <EditText
-                    android:id="@+id/text_view_cantidad"
+                    android:id="@+id/edit_text_cantidad"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
@@ -132,8 +146,7 @@
                     android:background="@color/transparent"
                     android:drawablePadding="12dp"
                     android:hint="@string/apellido_cantidad"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -142,7 +155,7 @@
                     tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
                 <EditText
-                    android:id="@+id/text_view_hora_inicial"
+                    android:id="@+id/edit_text_hora_inicial"
                     android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
@@ -152,8 +165,6 @@
                     android:background="@color/transparent"
                     android:drawablePadding="12dp"
                     android:hint="@string/hora_venta_inicial"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -162,7 +173,7 @@
                     tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
                 <EditText
-                    android:id="@+id/text_view_hora_final"
+                    android:id="@+id/edit_text_hora_final"
                     android:layout_width="250dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
@@ -172,8 +183,6 @@
                     android:background="@color/transparent"
                     android:drawablePadding="12dp"
                     android:hint="@string/hora_venta_final"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -182,8 +191,8 @@
                     tools:ignore="RtlSymmetry,VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
                 <EditText
-                    android:id="@+id/text_view_precio"
-                    android:layout_width="250dp"
+                    android:id="@+id/edit_text_precio"
+                    android:layout_width="91dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="30dp"
@@ -192,8 +201,7 @@
                     android:background="@color/transparent"
                     android:drawablePadding="12dp"
                     android:hint="@string/precio"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textColorHint="@color/white"
@@ -206,15 +214,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="88dp">
 
-                    <RadioGroup
-                        android:id="@+id/radiogroup_type"
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        app:layout_column="0"
-                        app:layout_row="0" />
 
-                    <RadioButton
-                        android:id="@+id/radioButtonVendedor"
+                    <CheckBox
+                        android:id="@+id/checkEconomia"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginStart="25dp"
@@ -225,8 +227,8 @@
                         app:layout_row="0"
                         tools:ignore="TouchTargetSizeCheck" />
 
-                    <RadioButton
-                        android:id="@+id/radioButtonComprador"
+                    <CheckBox
+                        android:id="@+id/checkFei"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginStart="25dp"
@@ -238,9 +240,10 @@
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button_picture"
+                        android:id="@+id/button_product_picture"
                         android:layout_width="69dp"
                         android:layout_height="31dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginTop="10dp"
                         android:background="@color/transparent"
                         android:text="@string/picture"
@@ -249,22 +252,20 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_column="1"
-                        android:layout_marginStart="15dp"
                         app:layout_row="0"
                         tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
-
 
 
                 </androidx.gridlayout.widget.GridLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button_register"
+                    android:id="@+id/button_register_product"
                     android:layout_width="130dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center|top"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/transparent"
-                    android:text="@string/sing_up"
+                    android:text="@string/to_register"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="14sp"
@@ -272,10 +273,6 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
-
-
         </androidx.cardview.widget.CardView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

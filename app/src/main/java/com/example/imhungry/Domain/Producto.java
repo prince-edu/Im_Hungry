@@ -1,21 +1,19 @@
 package com.example.imhungry.Domain;
 
-import java.util.Date;
-
 public class Producto {
     private int id_producto;
     private String nombre;
     private String descripcion;
     private int cantidadDisponible;
-    private Date horaVentaInicial;
-    private Date horaVentaFinal;
+    private String horaVentaInicial;
+    private String horaVentaFinal;
     private String puntoEncuentro;
     private Double precio;
     private String estado;
     private String foto;
 
     public Producto(int id_producto, String nombre, String descripcion, int cantidadDisponible,
-                    Date horaVentaInicial, Date horaVentaFinal, String puntoEncuentro, Double precio,
+                    String horaVentaInicial, String horaVentaFinal, String puntoEncuentro, Double precio,
                     String estado, String foto) {
         this.id_producto = id_producto;
         this.nombre = nombre;
@@ -61,19 +59,19 @@ public class Producto {
         this.cantidadDisponible = cantidadDisponible;
     }
 
-    public Date getHoraVentaInicial() {
+    public String getHoraVentaInicial() {
         return horaVentaInicial;
     }
 
-    public void setHoraVentaInicial(Date horaVentaInicial) {
+    public void setHoraVentaInicial(String horaVentaInicial) {
         this.horaVentaInicial = horaVentaInicial;
     }
 
-    public Date getHoraVentaFinal() {
+    public String getHoraVentaFinal() {
         return horaVentaFinal;
     }
 
-    public void setHoraVentaFinal(Date horaVentaFinal) {
+    public void setHoraVentaFinal(String horaVentaFinal) {
         this.horaVentaFinal = horaVentaFinal;
     }
 
