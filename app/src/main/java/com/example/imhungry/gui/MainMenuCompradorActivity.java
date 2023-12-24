@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.imhungry.Domain.Estudiante;
 import com.example.imhungry.R;
 import com.example.imhungry.databinding.ActivityMainMenuCompradorBinding;
 import com.google.android.material.navigation.NavigationView;

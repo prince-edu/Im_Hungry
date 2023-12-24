@@ -6,8 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.squareup.moshi.Json;
 
+import java.io.Serializable;
+
 //@Json(name="apellido_paterno")
-public class Estudiante {
+public class Estudiante implements Serializable {
     private String matricula;
     private String nombre;
     private String apellidoPaterno;

@@ -10,8 +10,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.imhungry.Domain.Estudiante;
 import com.example.imhungry.R;
 import com.example.imhungry.databinding.ActivityMainMenuVendedorBinding;
+import com.example.imhungry.ui.profile.MyProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainMenuVendedorActivity extends AppCompatActivity {
@@ -27,6 +29,14 @@ public class MainMenuVendedorActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMainVendedor.toolbarVendedor);
+
+        // Obtener el objeto del Intent
+        Estudiante estudianteLogin = (Estudiante) getIntent().getSerializableExtra("estudianteLogin");
+
+        MyProfileFragment fragment = MyProfileFragment.newInstance(estudianteLogin);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.perfil_tipo_perfil, fragment)
+                .commit();
 
         DrawerLayout drawer = binding.drawerLayoutVendedor;
         NavigationView navigationView = binding.navViewVendedor;
