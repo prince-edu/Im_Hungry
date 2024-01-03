@@ -37,38 +37,25 @@ public class MyProfileFragment extends Fragment {
 
     private FragmentMyProfileBinding binding;
     Retrofit retrofit;
-    private static final String ARG_ESTUDIANTE = "estudiante";
-
-    // Método estático para crear una nueva instancia del fragmento con argumentos
-    public static MyProfileFragment newInstance(Estudiante estudiante) {
-        MyProfileFragment fragment = new MyProfileFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_ESTUDIANTE, estudiante);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProfileViewModel profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
-
-        binding = FragmentMyProfileBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(API.getUrl())
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build();
 
+        ProfileViewModel profileViewModel =
+                new ViewModelProvider(this).get(ProfileViewModel.class);
+
+        binding = FragmentMyProfileBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        buscarEstudiante("aaa");
+
         final TextView textView = binding.textView2;
         profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
-        LogInActivity activity = (LogInActivity) getActivity();
-        if (activity != null) {
-            Estudiante estudiante = (Estudiante) getArguments().getSerializable(ARG_ESTUDIANTE);
-            buscarEstudiante(estudiante);
-        }
 
         return root;
     }
@@ -78,16 +65,34 @@ public class MyProfileFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-    public void buscarEstudiante(Estudiante estudiante){
+
+    public void actualizarDatos(Bundle bundle) {
+        if (bundle != null) {
+            String tuStringRecibido = bundle.getString("matricula");
+            mostrarToast(tuStringRecibido);
+            mostrarToast(tuStringRecibido);
+
+            // Usa tu String recibido según necesites
+        }
+    }
+    public void buscarEstudiante(String matricula){
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(API.getUrl())
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<EstudianteResponse> call = apiService.estudiantesGetById(estudiante.getMatricula());
+        matricula = "aaa";
+        Call<EstudianteResponse> call = apiService.estudiantesGetById(matricula);
         call.enqueue(new Callback<EstudianteResponse>() {
             @Override
             public void onResponse(Call<EstudianteResponse> call, Response<EstudianteResponse> response) {
+                assert response.body() != null;
                 if((response.body().getEstudiante() == null)){
                     mostrarToast("Ha ocurrido un error, inténtalo de nuevo.");
                 }else {
+                    mostrarToast("Encontradoddddddddd");
                     mostrarDatos(response.body().getEstudiante());
                 }
             }
@@ -112,16 +117,17 @@ public class MyProfileFragment extends Fragment {
         textViewMatricula.setText(estudiante.getMatricula());
         textViewNombre.setText(estudiante.getNombre() + " " + estudiante.getApellidoPaterno() +" " + estudiante.getApellidoMaterno());
         textViewCorreo.setText(estudiante.getCorreoInstitucional());
-        textViewTipoPerfil.setText("Vendedor: " + estudiante.getTipoVendedor() + ", Comprador: " + estudiante.getTipoComprador());
+        textViewTipoPerfil.setText("Vendedor: " + estudiante.getTipoVendedor() + "-- Comprador: " + estudiante.getTipoComprador());
 
         byte[] decodedString = Base64.decode(estudiante.getFotoCredencial(), Base64.DEFAULT);
         Bitmap bitmapCredencial = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         imageViewCredencial.setImageBitmap(bitmapCredencial);
 
         byte[] decodedString2 = Base64.decode(estudiante.getFotoPerfil(), Base64.DEFAULT);
-        Bitmap bitmapPerfil = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        Bitmap bitmapPerfil = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
         imageViewPerfil.setImageBitmap(bitmapPerfil);
 
     }
+
 
 }

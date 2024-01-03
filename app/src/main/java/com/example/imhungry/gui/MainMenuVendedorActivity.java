@@ -1,7 +1,10 @@
 package com.example.imhungry.gui;
 
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -22,6 +25,8 @@ public class MainMenuVendedorActivity extends AppCompatActivity {
 
     private ActivityMainMenuVendedorBinding binding;
 
+    private String matriculaRecibida;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -30,13 +35,15 @@ public class MainMenuVendedorActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarMainVendedor.toolbarVendedor);
 
-        // Obtener el objeto del Intent
-        Estudiante estudianteLogin = (Estudiante) getIntent().getSerializableExtra("estudianteLogin");
+        // Recibe el Intent que inició esta actividad
+        Intent intent = getIntent();
 
-        MyProfileFragment fragment = MyProfileFragment.newInstance(estudianteLogin);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.perfil_tipo_perfil, fragment)
-                .commit();
+        // Obtiene el String extra del Intent
+        if(intent != null && intent.hasExtra("matricula")) {
+            matriculaRecibida = intent.getStringExtra("matricula");
+        }
+
+
 
         DrawerLayout drawer = binding.drawerLayoutVendedor;
         NavigationView navigationView = binding.navViewVendedor;
@@ -44,9 +51,12 @@ public class MainMenuVendedorActivity extends AppCompatActivity {
                 R.id.nav_my_products, R.id.nav_my_profile, R.id.nav_my_orders_vendedor, R.id.nav_register_product, R.id.nav_my_statistics,R.id.nav_my_chats, R.id.log_out)
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main_vendedor);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfigurationVendedor);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

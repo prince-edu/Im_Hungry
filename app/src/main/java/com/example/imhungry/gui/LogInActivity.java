@@ -157,12 +157,12 @@ public class LogInActivity extends AppCompatActivity {
     }
     public void irAVentanaComprador(){
         Intent intent = new Intent(this, MainMenuCompradorActivity.class);
-        intent.putExtra("estudianteLogin", estudianteLogin);
+        intent.putExtra("matricula", estudianteLogin.getMatricula());
         startActivity(intent);
     }
     public void irAVentanaVendedor(){
         Intent intent = new Intent(this, MainMenuVendedorActivity.class);
-        intent.putExtra("estudianteLogin", estudianteLogin);
+        intent.putExtra("matricula", estudianteLogin.getMatricula());
         startActivity(intent);
     }
 }

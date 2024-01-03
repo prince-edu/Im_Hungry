@@ -24,8 +24,6 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.imhungry.Domain.Estudiante;
-import com.example.imhungry.Domain.EstudianteResponse;
 import com.example.imhungry.Domain.Producto;
 import com.example.imhungry.HttpRequest.API;
 import com.example.imhungry.HttpRequest.ApiService;
@@ -33,8 +31,6 @@ import com.example.imhungry.R;
 import com.example.imhungry.databinding.FragmentRegisterProductBinding;
 
 import java.io.IOException;
-import java.time.LocalTime;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
