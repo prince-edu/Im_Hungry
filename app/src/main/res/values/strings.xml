@@ -44,9 +44,9 @@
     <string name="registrar_producto">Registrar producto</string>
     <string name="descripcion">Descripción</string>
     <string name="apellido_cantidad">Cantidad</string>
-    <string name="hora_venta_inicial">Hora venta inicial</string>
-    <string name="hora_venta_final">Hora venta final</string>
-    <string name="precio">Precio</string>
+    <string name="hora_venta_inicial">Hora venta inicial  hrs:min:seg</string>
+    <string name="hora_venta_final">Hora venta final hrs:min:seg</string>
+    <string name="precio">Precio </string>
     <string name="menu_mis_productos">Mis productos</string>
     <string name="menu_my_statistics">Mis estadisticas</string>
     <string name="menu_registrer_product">Registrar producto</string>
@@ -56,4 +56,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="my_profile">Perfil</string>
+    <string name="to_register">Registrar</string>
+    <string name="id_producto">ID del producto</string>
 </resources>

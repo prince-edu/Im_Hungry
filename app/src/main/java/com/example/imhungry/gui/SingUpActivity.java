@@ -64,6 +64,7 @@ public class SingUpActivity extends AppCompatActivity {
             String apellidoP = etApellidoP.getText().toString();
             String matricula = etMatricula.getText().toString();
             String nombre = etNombre.getText().toString();
+
             String vendedor = new String();//se ha inicializado este String ya que en la parte de abajo
             String comprador = new String();//no permite usar el TextUtils.isEmpty() si solo se declara;
 
@@ -177,6 +178,7 @@ public class SingUpActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Estudiante> call, Throwable t) {
+                mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tarde");
 
             }
         });

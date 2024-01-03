@@ -11,7 +11,7 @@ public class RegisterProductViewModel extends ViewModel {
 
     public RegisterProductViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Register product fragment");
+        mText.setValue("Registrar Producto");
     }
 
     public LiveData<String> getText() {

@@ -29,7 +29,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class LogInActivity extends AppCompatActivity {
 
-    Estudiante estudianteLogin;
+    public static Estudiante estudianteLogin;
     Retrofit retrofit;
 
 
@@ -157,10 +157,12 @@ public class LogInActivity extends AppCompatActivity {
     }
     public void irAVentanaComprador(){
         Intent intent = new Intent(this, MainMenuCompradorActivity.class);
+        intent.putExtra("matricula", estudianteLogin.getMatricula());
         startActivity(intent);
     }
     public void irAVentanaVendedor(){
         Intent intent = new Intent(this, MainMenuVendedorActivity.class);
+        intent.putExtra("matricula", estudianteLogin.getMatricula());
         startActivity(intent);
     }
 }
