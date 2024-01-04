@@ -1,5 +1,7 @@
 package com.example.imhungry.ui.products;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.imhungry.Domain.EstudianteResponse;
 import com.example.imhungry.Domain.Producto;
 import com.example.imhungry.HttpRequest.API;
 import com.example.imhungry.HttpRequest.ApiService;
+import com.example.imhungry.R;
 import com.example.imhungry.databinding.FragmentProductsBinding;
+import android.util.Base64;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +51,8 @@ public class MyProductsFragment extends Fragment {
                 .build();
 
         RecyclerView recyclerView = binding.recyclerProductos;
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
         api(recyclerView);
 
 
@@ -69,14 +74,54 @@ public class MyProductsFragment extends Fragment {
 
                     mostrarToast("Éxito");
 
-                    int spanCount = 2; // Número de columnas en la cuadrícula
-                    StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
-
                     Producto productos[] = response.body();
                     List<Producto> listaProductos = new ArrayList<>(Arrays.asList(productos));
-                    ProductsAdapter productsAdapter = new ProductsAdapter(listaProductos);
-                    rv.setAdapter(productsAdapter);
-                    rv.setLayoutManager(staggeredGridLayoutManager);
+                    RecyclerView.Adapter adapter = new RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                        @NonNull
+                        @Override
+                        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            // Crear la vista para cada elemento del RecyclerView
+                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+                            return new ProductoViewHolder(view);
+                        }
+
+                        @Override
+                        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+                            // Establecer los datos para cada elemento del RecyclerView
+                            if (holder instanceof ProductoViewHolder) {
+                                Producto producto = listaProductos.get(position);
+                                ProductoViewHolder productoViewHolder = (ProductoViewHolder) holder;
+
+                                productoViewHolder.textViewNombre.setText(producto.getNombre());
+                                productoViewHolder.textViewPrecio.setText(String.valueOf(producto.getPrecio()));
+
+                                Bitmap foto = convertirStringABitmap(producto.getFoto());
+                                if (foto != null) {
+                                    productoViewHolder.imageViewFoto.setImageBitmap(foto);
+                                } else {
+                                    // Manejar el caso en que el bitmap sea nulo
+                                    productoViewHolder.imageViewFoto.setImageResource(R.drawable.im_hungry_icon);
+                                }
+
+                                productoViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        // Acciones al hacer clic en un elemento
+                                        // Por ejemplo, mostrar un Toast con el nombre del producto
+                                        Toast.makeText(v.getContext(), "Producto: " + producto.getNombre(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public int getItemCount() {
+                            return listaProductos.size();
+                        }
+                    };
+
+// Establecer el adaptador al RecyclerView
+                    rv.setAdapter(adapter);
 
                 }
             }
@@ -85,6 +130,15 @@ public class MyProductsFragment extends Fragment {
                 mostrarToast("Error");
             }
         });
+    }
+    private Bitmap convertirStringABitmap(String fotoString) {
+        try {
+            byte[] encodeByte = Base64.decode(fotoString, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

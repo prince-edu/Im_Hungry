@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,6 +25,7 @@ import com.example.imhungry.HttpRequest.API;
 import com.example.imhungry.HttpRequest.ApiService;
 import com.example.imhungry.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -110,8 +112,22 @@ public class SingUpActivity extends AppCompatActivity {
                         if (data != null) {
                             Uri imagenSeleccionadaUri = data.getData();
                             try {
+
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-                                fotoPerfil = bitmap.toString();
+
+                                int anchoRedimensionado = bitmap.getWidth() / 2; // Establece el nuevo ancho deseado
+                                int altoRedimensionado = bitmap.getHeight() / 2; // Establece el nuevo alto deseado
+
+                                Bitmap bitmapRedimensionado = Bitmap.createScaledBitmap(bitmap, anchoRedimensionado, altoRedimensionado, true);
+
+                                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                                bitmapRedimensionado.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
+                                byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+                                fotoPerfil = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+                               //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
+                                //fotoPerfil = bitmap.toString();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -126,8 +142,22 @@ public class SingUpActivity extends AppCompatActivity {
                         if (data != null) {
                             Uri imagenSeleccionadaUri = data.getData();
                             try {
+
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-                                fotoCredencial = bitmap.toString();
+
+                                int anchoRedimensionado = bitmap.getWidth() / 2; // Establece el nuevo ancho deseado
+                                int altoRedimensionado = bitmap.getHeight() / 2; // Establece el nuevo alto deseado
+
+                                Bitmap bitmapRedimensionado = Bitmap.createScaledBitmap(bitmap, anchoRedimensionado, altoRedimensionado, true);
+
+                                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                                bitmapRedimensionado.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
+                                byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+                                fotoCredencial = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+                                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
+                                //fotoCredencial = bitmap.toString();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
