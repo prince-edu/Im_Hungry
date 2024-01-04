@@ -51,8 +51,8 @@ public class MyProfileFragment extends Fragment {
 
         binding = FragmentMyProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        buscarEstudiante("aaa");
+        String matricula = LogInActivity.estudianteLogin.getMatricula();
+        buscarEstudiante(matricula);
 
         final TextView textView = binding.textView2;
         profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
@@ -83,7 +83,6 @@ public class MyProfileFragment extends Fragment {
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
-        matricula = "aaa";
         Call<EstudianteResponse> call = apiService.estudiantesGetById(matricula);
         call.enqueue(new Callback<EstudianteResponse>() {
             @Override
@@ -92,7 +91,6 @@ public class MyProfileFragment extends Fragment {
                 if((response.body().getEstudiante() == null)){
                     mostrarToast("Ha ocurrido un error, inténtalo de nuevo.");
                 }else {
-                    mostrarToast("Encontradoddddddddd");
                     mostrarDatos(response.body().getEstudiante());
                 }
             }
@@ -117,7 +115,7 @@ public class MyProfileFragment extends Fragment {
         textViewMatricula.setText(estudiante.getMatricula());
         textViewNombre.setText(estudiante.getNombre() + " " + estudiante.getApellidoPaterno() +" " + estudiante.getApellidoMaterno());
         textViewCorreo.setText(estudiante.getCorreoInstitucional());
-        textViewTipoPerfil.setText("Vendedor: " + estudiante.getTipoVendedor() + "-- Comprador: " + estudiante.getTipoComprador());
+        textViewTipoPerfil.setText("Vendedor: " + estudiante.getTipoVendedor() + " / Comprador: " + estudiante.getTipoComprador());
 
         byte[] decodedString = Base64.decode(estudiante.getFotoCredencial(), Base64.DEFAULT);
         Bitmap bitmapCredencial = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
