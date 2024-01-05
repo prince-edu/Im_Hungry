@@ -58,4 +58,6 @@
     <string name="my_profile">Perfil</string>
     <string name="to_register">Registrar</string>
     <string name="id_producto">ID del producto</string>
+    <string name="descripcion_producto">"Descripción: "</string>
+    <string name="cantidad">"Cantidad: "</string>
 </resources>

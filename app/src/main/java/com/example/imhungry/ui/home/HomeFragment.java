@@ -99,7 +99,6 @@ public class HomeFragment extends Fragment {
 
                                 productoViewHolder.textViewNombre.setText(producto.getNombre());
                                 productoViewHolder.textViewPrecio.setText(String.valueOf(producto.getPrecio()));
-
                                 Bitmap foto = convertirStringABitmap(producto.getFoto());
 
 

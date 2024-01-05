@@ -2,6 +2,7 @@ package com.example.imhungry.gui;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -114,20 +115,14 @@ public class SingUpActivity extends AppCompatActivity {
                             try {
 
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-
-                                int anchoRedimensionado = bitmap.getWidth() / 2; // Establece el nuevo ancho deseado
-                                int altoRedimensionado = bitmap.getHeight() / 2; // Establece el nuevo alto deseado
-
-                                Bitmap bitmapRedimensionado = Bitmap.createScaledBitmap(bitmap, anchoRedimensionado, altoRedimensionado, true);
-
                                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                                bitmapRedimensionado.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
                                 byte[] byteArray = byteArrayOutputStream.toByteArray();
+                                String imagenString = new String(byteArray);
+                                fotoPerfil = imagenString;
+                               // fotoPerfil = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-                                fotoPerfil = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-                               //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-                                //fotoPerfil = bitmap.toString();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -144,20 +139,15 @@ public class SingUpActivity extends AppCompatActivity {
                             try {
 
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-
-                                int anchoRedimensionado = bitmap.getWidth() / 2; // Establece el nuevo ancho deseado
-                                int altoRedimensionado = bitmap.getHeight() / 2; // Establece el nuevo alto deseado
-
-                                Bitmap bitmapRedimensionado = Bitmap.createScaledBitmap(bitmap, anchoRedimensionado, altoRedimensionado, true);
-
                                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                                bitmapRedimensionado.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
                                 byte[] byteArray = byteArrayOutputStream.toByteArray();
+                                String imagenString = new String(byteArray);
+                                fotoCredencial = imagenString;
 
-                                fotoCredencial = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-                                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-                                //fotoCredencial = bitmap.toString();
+                                //fotoCredencial = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -192,23 +182,22 @@ public class SingUpActivity extends AppCompatActivity {
     }
 
     public void registrarEstudiante (Estudiante estudiante){
-
         ApiService apiService = retrofit.create(ApiService.class);
         Call<Estudiante> call = apiService.estudiantesCreate(estudiante);
         call.enqueue(new Callback<Estudiante>() {
             @Override
-            public void onResponse(Call<Estudiante> call, Response<Estudiante> response) {
+            public void onResponse(@NonNull Call<Estudiante> call, @NonNull Response<Estudiante> response) {
                 if(response.isSuccessful()){
                     mostrarToast("Registro éxitoso");
                     finish();
                 }else{
-                    mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tarde");
+                    mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tardee");
                 }
             }
 
             @Override
             public void onFailure(Call<Estudiante> call, Throwable t) {
-                mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tarde");
+                mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tardeeee");
 
             }
         });
@@ -223,7 +212,7 @@ public class SingUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<EstudianteResponse> call, Response<EstudianteResponse> response) {
                 if((response.body().getEstudiante() == null)){
-                    registrarEstudiante(estudiante);
+                     registrarEstudiante(estudiante);
                 }else {
                     mostrarToast("La matrícula que has ingresado ya se encuentra registrada");
                 }
