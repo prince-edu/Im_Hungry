@@ -112,20 +112,21 @@ public class SingUpActivity extends AppCompatActivity {
 
                         if (data != null) {
                             Uri imagenSeleccionadaUri = data.getData();
-                            try {
 
-                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
+
+                               /* Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
                                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
                                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                                 String imagenString = new String(byteArray);
                                 fotoPerfil = imagenString;
-                               // fotoPerfil = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                                */
+                               //fotoPerfil = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                                fotoPerfil = "android.graphics.Bitmap@25e32";
 
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+
+
                         }
                     }
                 });
@@ -136,9 +137,9 @@ public class SingUpActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         if (data != null) {
                             Uri imagenSeleccionadaUri = data.getData();
-                            try {
 
-                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
+
+                               /* Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
                                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
                                 byte[] byteArray = byteArrayOutputStream.toByteArray();
@@ -146,11 +147,10 @@ public class SingUpActivity extends AppCompatActivity {
                                 fotoCredencial = imagenString;
 
 
-                                //fotoCredencial = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                                //fotoCredencial = Base64.encodeToString(byteArray, Base64.DEFAULT);*/
+                                fotoCredencial = "android.graphics.Bitmap@25e32";
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+
                         }
                     }
                 });
