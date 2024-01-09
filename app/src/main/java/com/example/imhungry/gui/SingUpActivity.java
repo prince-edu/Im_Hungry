@@ -114,20 +114,29 @@ public class SingUpActivity extends AppCompatActivity {
                         if (data != null) {
                             Uri imagenSeleccionadaUri = data.getData();
 
+                            try {
+                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
 
-                               /* Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
+                                // Comprimir el bitmap en formato JPEG con calidad del 100%
                                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+                                // Obtener el arreglo de bytes a partir del flujo de salida
                                 byte[] byteArray = byteArrayOutputStream.toByteArray();
-                                String imagenString = new String(byteArray);
+
+                                // Convertir el arreglo de bytes a una cadena Base64
+                                String imagenString = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
                                 fotoPerfil = imagenString;
-                                */
-                               //fotoPerfil = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                                fotoPerfil = "android.graphics.Bitmap@25e32";
 
-
-
-
+                                mostrarToast("Foto convertida a cadena: " + fotoPerfil);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                                mostrarToast("Error: No se pudo encontrar la imagen seleccionada");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                mostrarToast("Error de lectura al procesar la imagen");
+                            }
                         }
                     }
                 });
@@ -155,7 +164,6 @@ public class SingUpActivity extends AppCompatActivity {
                                 // Aquí puedes utilizar la cadena 'imagenString' según tus necesidades
                                 fotoCredencial = imagenString;
 
-                                // Mostrar información de la imagen (puedes eliminar esta línea si no es necesaria)
                                 mostrarToast("Foto convertida a cadena: " + fotoCredencial);
                             } catch (FileNotFoundException e) {
                                 e.printStackTrace();
@@ -164,9 +172,6 @@ public class SingUpActivity extends AppCompatActivity {
                                 e.printStackTrace();
                                 mostrarToast("Error de lectura al procesar la imagen");
                             }
-
-
-
                         }
                     }
                 });
