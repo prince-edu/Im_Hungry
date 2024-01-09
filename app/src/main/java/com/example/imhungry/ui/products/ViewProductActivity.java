@@ -56,7 +56,6 @@ public class ViewProductActivity extends AppCompatActivity {
 
         Button  botonReview = findViewById(R.id.button_reviews);
         Button botonHacerPedido = findViewById(R.id.button_make_order);
-        ImageView favoritos = findViewById(R.id.imageView_favoritos);
 
         TextView textViewTitulo = findViewById(R.id.textView_titulo);
         TextView textViewTitulo2 = findViewById(R.id.textView3);
@@ -98,16 +97,6 @@ public class ViewProductActivity extends AppCompatActivity {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
         });
-
-        favoritos.setOnClickListener(v->{
-
-        String matricula = LogInActivity.estudianteLogin.getMatricula();
-        int producto = HomeFragment.id_producto;
-        String idFavorito = randomID(5);
-            ProductosFavoritos productoFavorito = new ProductosFavoritos(idFavorito, matricula, producto);
-            registrarFavorito(productoFavorito);
-        });
-
     }
 
     public void buscarProducto(String nombre){
@@ -163,28 +152,6 @@ public class ViewProductActivity extends AppCompatActivity {
         byte[] byteArray = Base64.decode(producto.getFoto(), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         imageViewFoto.setImageBitmap(bitmap);
-    }
-
-    public void registrarFavorito(ProductosFavoritos productoFavorito){
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<ProductosFavoritos> call = apiService.productosFavCreate(productoFavorito);
-        call.enqueue(new Callback<ProductosFavoritos>() {
-            @Override
-            public void onResponse(@NonNull Call<ProductosFavoritos> call, @NonNull Response<ProductosFavoritos> response) {
-                if(response.isSuccessful()){
-                    mostrarToast("Producto agregado a favoritos");
-                    finish();
-                }else{
-                    mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tardee");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ProductosFavoritos> call, Throwable t) {
-                mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tardeeee");
-
-            }
-        });
     }
 
     public static String randomID(int length) {
