@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text=""
+                android:text="@string/review"
                 android:textColor="@color/black"
                 android:textSize="45sp"
                 android:textStyle="bold"
@@ -55,7 +55,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:text=""
+                android:text="@string/review"
                 android:textColor="@color/white"
                 android:textSize="45sp"
                 android:textStyle="bold"
@@ -120,75 +120,69 @@
                         android:id="@+id/descripcion_producto"
                         android:layout_width="250dp"
                         android:layout_height="35dp"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginStart="70dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="50dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
-                        android:text="@string/descripcion_producto"
+                        android:text="@string/calificación"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
+                    <EditText
+                        android:id="@+id/calificacion_review"
+                        android:layout_width="73dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="120dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:background="@color/transparent"
+                        android:drawablePadding="12dp"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textColorHint="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+
                     <TextView
-                        android:id="@+id/precio_producto"
+                        android:id="@+id/descripcion_review_producto"
                         android:layout_width="250dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginStart="100dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="50dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
-                        android:text=""
+                        android:text="@string/descripcion"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/cantidad_producto"
+                    <EditText
+                        android:id="@+id/descripcion_review"
                         android:layout_width="250dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="94dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="50dp"
+                        android:background="@color/transparent"
+                        android:drawablePadding="12dp"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
-                        android:text="@string/cantidad"
-                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
-                    <TextView
-                        android:id="@+id/horario_producto"
-                        android:layout_width="250dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="50dp"
-                        android:paddingStart="15dp"
-                        android:paddingEnd="15dp"
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/punto_encuentro"
-                        android:layout_width="250dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="50dp"
-                        android:paddingStart="15dp"
-                        android:paddingEnd="15dp"
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -200,36 +194,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView" >
 
-                <ImageView
-                    android:id="@+id/imageView_favoritos"
-                    android:layout_width="45dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="50dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    app:srcCompat="@drawable/favorite_icon" />
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button_reviews"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="150dp"
                     android:background="@color/transparent"
-                    android:text="@string/reviews"
+                    android:text="@string/send"
                     tools:layout_editor_absoluteX="293dp"
                     tools:layout_editor_absoluteY="637dp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button_make_order"
-                    android:layout_width="87dp"
-                    android:layout_height="37dp"
-                    android:layout_marginStart="50dp"
-                    android:background="@color/transparent"
-                    android:text="@string/realizar_pedido"
-                    tools:layout_editor_absoluteX="179dp"
-                    tools:layout_editor_absoluteY="640dp" />
-
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

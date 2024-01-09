@@ -1,5 +1,6 @@
 package com.example.imhungry.ui.home;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.example.imhungry.databinding.FragmentHomeBinding;
 import com.example.imhungry.databinding.FragmentProductsBinding;
 import com.example.imhungry.ui.products.ProductoViewHolder;
 import com.example.imhungry.ui.products.ProductsViewModel;
+import com.example.imhungry.ui.products.ViewProductActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +42,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     Retrofit retrofit;
+    public static int id_producto;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -108,6 +111,18 @@ public class HomeFragment extends Fragment {
                                     // Manejar el caso en que el bitmap sea nulo
                                     productoViewHolder.imageViewFoto.setImageResource(R.drawable.im_hungry_icon);
                                 }
+
+                                productoViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+
+                                    @Override
+                                    public void onClick(View v) {
+                                        // Acciones al hacer clic en un elemento
+                                        id_producto = producto.getId_producto();
+                                        Intent intent = new Intent(getActivity(), ViewProductActivity.class);
+                                        intent.putExtra("nombre", producto.getNombre());
+                                        startActivity(intent);
+                                    }
+                                });
                             }
                         }
 

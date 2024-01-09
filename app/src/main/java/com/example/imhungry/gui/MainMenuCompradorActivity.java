@@ -29,7 +29,7 @@ public class MainMenuCompradorActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_my_profile, R.id.nav_my_orders, R.id.nav_my_favorites, R.id.nav_my_chats, R.id.log_out)
+                R.id.nav_home, R.id.nav_my_profile, R.id.nav_my_orders, R.id.nav_my_favorites, R.id.log_out)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

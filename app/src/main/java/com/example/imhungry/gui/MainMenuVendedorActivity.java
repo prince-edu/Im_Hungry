@@ -35,20 +35,10 @@ public class MainMenuVendedorActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarMainVendedor.toolbarVendedor);
 
-        // Recibe el Intent que inició esta actividad
-        Intent intent = getIntent();
-
-        // Obtiene el String extra del Intent
-        if(intent != null && intent.hasExtra("matricula")) {
-            matriculaRecibida = intent.getStringExtra("matricula");
-        }
-
-
-
         DrawerLayout drawer = binding.drawerLayoutVendedor;
         NavigationView navigationView = binding.navViewVendedor;
         mAppBarConfigurationVendedor = new AppBarConfiguration.Builder(
-                R.id.nav_my_products, R.id.nav_my_profile, R.id.nav_my_orders_vendedor, R.id.nav_register_product, R.id.nav_my_statistics,R.id.nav_my_chats, R.id.log_out)
+                R.id.nav_my_products, R.id.nav_my_profile, R.id.nav_my_orders_vendedor, R.id.nav_register_product, R.id.log_out)
                 .setOpenableLayout(drawer)
                 .build();
 

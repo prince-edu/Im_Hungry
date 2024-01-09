@@ -1,26 +1,37 @@
 package com.example.imhungry.ui.products;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.imhungry.Domain.Estudiante;
 import com.example.imhungry.Domain.EstudianteResponse;
 import com.example.imhungry.Domain.Producto;
 import com.example.imhungry.Domain.ProductoResponse;
+import com.example.imhungry.Domain.ProductosFavoritos;
 import com.example.imhungry.HttpRequest.API;
 import com.example.imhungry.HttpRequest.ApiService;
 import com.example.imhungry.R;
 import com.example.imhungry.databinding.ActivityViewProductBinding;
+import com.example.imhungry.gui.LogInActivity;
+import com.example.imhungry.gui.MainMenuVendedorActivity;
+import com.example.imhungry.ui.home.HomeFragment;
 
 import org.w3c.dom.Text;
+
+import java.security.SecureRandom;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +54,10 @@ public class ViewProductActivity extends AppCompatActivity {
 
         retrofit = new Retrofit.Builder().baseUrl(API.getUrl()).addConverterFactory((GsonConverterFactory.create())).build();
 
+        Button  botonReview = findViewById(R.id.button_reviews);
+        Button botonHacerPedido = findViewById(R.id.button_make_order);
+        ImageView favoritos = findViewById(R.id.imageView_favoritos);
+
         TextView textViewTitulo = findViewById(R.id.textView_titulo);
         TextView textViewTitulo2 = findViewById(R.id.textView3);
         ImageView imageViewProducto = findViewById(R.id.image_view_producto);
@@ -56,6 +71,42 @@ public class ViewProductActivity extends AppCompatActivity {
             String nombreProducto = getIntent().getStringExtra("nombre");
             buscarProducto(nombreProducto);
         }
+
+        botonReview.setOnClickListener(v->{
+
+                AlertDialog.Builder builder;
+                builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("¿Qué deseas hacer?")
+                        .setMessage("Selecciona una opción");
+
+                builder.setPositiveButton("ver reviews del producto", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(botonHacerPedido.getContext(), ReviewsActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                builder.setNegativeButton("crear review", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(botonHacerPedido.getContext(), CreateReviewActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+        });
+
+        favoritos.setOnClickListener(v->{
+
+        String matricula = LogInActivity.estudianteLogin.getMatricula();
+        int producto = HomeFragment.id_producto;
+        String idFavorito = randomID(5);
+            ProductosFavoritos productoFavorito = new ProductosFavoritos(idFavorito, matricula, producto);
+            registrarFavorito(productoFavorito);
+        });
 
     }
 
@@ -109,5 +160,42 @@ public class ViewProductActivity extends AppCompatActivity {
         textViewPuntoEncuentro.setText("Entrega en: " + producto.getPuntoEncuentro());
 
         //imageViewFoto.
+    }
+
+    public void registrarFavorito(ProductosFavoritos productoFavorito){
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ProductosFavoritos> call = apiService.productosFavCreate(productoFavorito);
+        call.enqueue(new Callback<ProductosFavoritos>() {
+            @Override
+            public void onResponse(@NonNull Call<ProductosFavoritos> call, @NonNull Response<ProductosFavoritos> response) {
+                if(response.isSuccessful()){
+                    mostrarToast("Producto agregado a favoritos");
+                    finish();
+                }else{
+                    mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tardee");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProductosFavoritos> call, Throwable t) {
+                mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tardeeee");
+
+            }
+        });
+    }
+
+    public static String randomID(int length) {
+        String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        SecureRandom random = new SecureRandom();
+        StringBuilder stringBuilder = new StringBuilder(length);
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            stringBuilder.append(randomChar);
+        }
+
+        return stringBuilder.toString();
     }
 }
