@@ -56,13 +56,13 @@ public interface ApiService {
     Call<Estudiante> estudiantesDelete(@Path("id") String id);
 
     // Pedidos
-    @GET("pedidos/all")
+    @GET("pedido/all")
     Call<Pedido[]> pedidosGetAll();
 
-    @GET("pedidos/{name}")
+    @GET("pedido/{name}")
     Call<Pedido> pedidosGetById(@Path("name") String name);
 
-    @POST("pedidos/")
+    @POST("pedido/")
     Call<Pedido> pedidosCreate(@Body Pedido pedido);
 
     @PUT("pedidos/{id}")

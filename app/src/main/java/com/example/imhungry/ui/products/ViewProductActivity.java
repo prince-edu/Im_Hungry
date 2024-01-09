@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,21 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.imhungry.Domain.Estudiante;
-import com.example.imhungry.Domain.EstudianteResponse;
+import com.example.imhungry.Domain.Pedido;
 import com.example.imhungry.Domain.Producto;
 import com.example.imhungry.Domain.ProductoResponse;
-import com.example.imhungry.Domain.ProductosFavoritos;
 import com.example.imhungry.HttpRequest.API;
 import com.example.imhungry.HttpRequest.ApiService;
 import com.example.imhungry.R;
 import com.example.imhungry.databinding.ActivityViewProductBinding;
 import com.example.imhungry.gui.LogInActivity;
-import com.example.imhungry.gui.MainMenuVendedorActivity;
-import com.example.imhungry.ui.home.HomeFragment;
 
-import org.w3c.dom.Text;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.security.SecureRandom;
 
 import retrofit2.Call;
@@ -43,6 +38,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 public class ViewProductActivity extends AppCompatActivity {
     private ActivityViewProductBinding binding;
     Retrofit retrofit;
+    int idproducto;
+    Double precioProdcuto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +51,7 @@ public class ViewProductActivity extends AppCompatActivity {
 
         retrofit = new Retrofit.Builder().baseUrl(API.getUrl()).addConverterFactory((GsonConverterFactory.create())).build();
 
-        Button  botonReview = findViewById(R.id.button_reviews);
+        Button botonReview = findViewById(R.id.button_reviews);
         Button botonHacerPedido = findViewById(R.id.button_make_order);
 
         TextView textViewTitulo = findViewById(R.id.textView_titulo);
@@ -97,6 +94,21 @@ public class ViewProductActivity extends AppCompatActivity {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
         });
+
+        botonHacerPedido.setOnClickListener(v->{
+            int idPedido = Integer.parseInt(randomIDNumerico(5));
+
+            Date fecha = new Date();
+
+
+            Pedido pedido = new Pedido(idPedido, "", fecha, precioProdcuto, "Pendiente", 0,
+                    LogInActivity.estudianteLogin.getMatricula(), idproducto);
+
+            Intent intent = new Intent(this, MakeOrderActivity.class);
+            intent.putExtra("pedido", pedido);
+            startActivity(intent);
+
+        });
     }
 
     public void buscarProducto(String nombre){
@@ -115,7 +127,8 @@ public class ViewProductActivity extends AppCompatActivity {
                 if((response.body().getProducto() == null)){
                     mostrarToast("Ha ocurrido un error, inténtalo de nuevo.");
                 }else {
-
+                    idproducto = response.body().getProducto().getId_producto();
+                    precioProdcuto = response.body().getProducto().getPrecio();
                     mostrarDatos(response.body().getProducto());
                 }
             }
@@ -156,6 +169,20 @@ public class ViewProductActivity extends AppCompatActivity {
 
     public static String randomID(int length) {
         String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        SecureRandom random = new SecureRandom();
+        StringBuilder stringBuilder = new StringBuilder(length);
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            stringBuilder.append(randomChar);
+        }
+
+        return stringBuilder.toString();
+    }
+    public static String randomIDNumerico(int length) {
+        String CHARACTERS = "0123456789";
 
         SecureRandom random = new SecureRandom();
         StringBuilder stringBuilder = new StringBuilder(length);
