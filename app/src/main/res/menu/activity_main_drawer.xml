@@ -17,10 +17,7 @@
             android:id="@+id/nav_my_orders"
             android:icon="@drawable/outline_bookmark_border_24"
             android:title="@string/menu_my_orders"/>
-        <item
-            android:id="@+id/nav_my_favorites"
-            android:icon="@drawable/outline_favorite_border_24"
-            android:title="@string/menu_favorites" />
+
         <item
             android:id="@+id/log_out"
             android:icon="@drawable/baseline_logout_24"
