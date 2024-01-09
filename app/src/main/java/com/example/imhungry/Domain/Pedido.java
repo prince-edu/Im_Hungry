@@ -1,8 +1,9 @@
 package com.example.imhungry.Domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Pedido {
+public class Pedido implements Serializable {
     private int idPedido;
     private String preferencias;
     private Date fechaPedido;
