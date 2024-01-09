@@ -101,10 +101,9 @@ public class HomeFragment extends Fragment {
                                 ProductoViewHolderComprador productoViewHolder = (ProductoViewHolderComprador  ) holder;
 
                                 productoViewHolder.textViewNombre.setText(producto.getNombre());
-                                productoViewHolder.textViewPrecio.setText(String.valueOf(producto.getPrecio()));
+                                productoViewHolder.textViewPrecio.setText(String.valueOf(producto.getPrecio().toString()));
+
                                 Bitmap foto = convertirStringABitmap(producto.getFoto());
-
-
                                 if (foto != null) {
                                     productoViewHolder.imageViewFoto.setImageBitmap(foto);
                                 } else {
@@ -132,7 +131,6 @@ public class HomeFragment extends Fragment {
                         }
                     };
 
-// Establecer el adaptador al RecyclerView
                     rv.setAdapter(adapter);
 
                 }
@@ -143,6 +141,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private Bitmap convertirStringABitmap(String fotoString) {
         try {
             byte[] encodeByte = Base64.decode(fotoString, Base64.DEFAULT);

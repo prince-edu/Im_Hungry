@@ -124,7 +124,7 @@ public class ViewProductActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<ProductoResponse> call, @NonNull Response<ProductoResponse> response) {
 
                 if((response.body().getProducto() == null)){
-                    mostrarToast("Ha ocurrido un error, inténtalo de nuevooo.");
+                    mostrarToast("Ha ocurrido un error, inténtalo de nuevo.");
                 }else {
 
                     mostrarDatos(response.body().getProducto());
@@ -132,7 +132,7 @@ public class ViewProductActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<ProductoResponse> call, Throwable t) {
-                mostrarToast("Ha ocurrido un errorrr");
+                mostrarToast("Ha ocurrido un error");
             }
         });
     }
@@ -154,12 +154,15 @@ public class ViewProductActivity extends AppCompatActivity {
         textViewNombre.setText(producto.getNombre());
         textViewNombre2.setText(producto.getNombre());
         textViewDescripcion.setText(producto.getDescripcion());
-        textViewPrecio.setText(producto.getPrecio().toString());
-        textViewCantidad.setText(producto.getCantidadDisponible());
+        textViewPrecio.setText("Precio: $" + producto.getPrecio().toString());
+        String cantidadd = Integer.toString(producto.getCantidadDisponible());
+        textViewCantidad.setText("Cantidad disponible: " + cantidadd);
         textViewHorario.setText("Horario: de " + producto.getHoraVentaInicial() +" a " + producto.getHoraVentaFinal());
         textViewPuntoEncuentro.setText("Entrega en: " + producto.getPuntoEncuentro());
 
-        //imageViewFoto.
+        byte[] byteArray = Base64.decode(producto.getFoto(), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        imageViewFoto.setImageBitmap(bitmap);
     }
 
     public void registrarFavorito(ProductosFavoritos productoFavorito){

@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ import com.example.imhungry.HttpRequest.ApiService;
 import com.example.imhungry.R;
 import com.example.imhungry.databinding.FragmentRegisterProductBinding;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -125,12 +128,31 @@ public class RegisterProductFragment extends Fragment {
                         Intent data = result.getData();
                         if (data != null) {
                             Uri imagenSeleccionadaUri = data.getData();
+                           //
                             try {
-                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), imagenSeleccionadaUri);
-                                fotoProducto = bitmap.toString();
+                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imagenSeleccionadaUri);
+
+                                // Comprimir el bitmap en formato JPEG con calidad del 100%
+                                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+                                // Obtener el arreglo de bytes a partir del flujo de salida
+                                byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+                                // Convertir el arreglo de bytes a una cadena Base64
+                                String imagenString = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+                                // Aquí puedes utilizar la cadena 'imagenString' según tus necesidades
+                                fotoProducto = imagenString;
+
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                                mostrarToast("Error: No se pudo encontrar la imagen seleccionada");
                             } catch (IOException e) {
                                 e.printStackTrace();
+                                mostrarToast("Error de lectura al procesar la imagen");
                             }
+                            //
                         }
                     }
                 });
@@ -194,7 +216,4 @@ public class RegisterProductFragment extends Fragment {
     public boolean validarID(String id) {
         return id != null && id.matches("[a-zA-Z0-9]+");
     }
-
-
-
 }

@@ -113,9 +113,9 @@ public class MyProfileFragment extends Fragment {
         Bitmap bitmapCredencial = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         imageViewCredencial.setImageBitmap(bitmapCredencial);
 
-        byte[] decodedString2 = Base64.decode(estudiante.getFotoPerfil(), Base64.DEFAULT);
-        Bitmap bitmapPerfil = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
-        imageViewPerfil.setImageBitmap(bitmapPerfil);
+        byte[] byteArray = Base64.decode(estudiante.getFotoPerfil(), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        imageViewPerfil.setImageBitmap(bitmap);
     }
 
 

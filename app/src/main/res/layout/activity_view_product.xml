@@ -119,13 +119,12 @@
                     <TextView
                         android:id="@+id/descripcion_producto"
                         android:layout_width="250dp"
-                        android:layout_height="35dp"
+                        android:layout_height="58dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="50dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
-                        android:text="@string/descripcion_producto"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -133,10 +132,10 @@
                     <TextView
                         android:id="@+id/precio_producto"
                         android:layout_width="250dp"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="50dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
@@ -148,14 +147,13 @@
                     <TextView
                         android:id="@+id/cantidad_producto"
                         android:layout_width="250dp"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="50dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
-                        android:text="@string/cantidad"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -163,10 +161,10 @@
                     <TextView
                         android:id="@+id/horario_producto"
                         android:layout_width="250dp"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="50dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
@@ -178,16 +176,15 @@
                     <TextView
                         android:id="@+id/punto_encuentro"
                         android:layout_width="250dp"
-                        android:layout_height="35dp"
+                        android:layout_height="81dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="50dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
-                        android:text=""
                         android:textColor="@color/white"
-                        android:textSize="16sp"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
