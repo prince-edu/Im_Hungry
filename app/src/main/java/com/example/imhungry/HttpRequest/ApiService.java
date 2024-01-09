@@ -72,8 +72,9 @@ public interface ApiService {
     @GET("producto/")
     Call<Producto[]> productoGetAll();
 
-    @GET("producto/{name}")
-    Call<ProductoResponse> productoGetByName(@Path("name") String name);
+
+    @GET("producto/{nombre}")
+    Call<ProductoResponse> productoGetByName(@Path("nombre") String nombre);
 
     @POST("producto/")
     Call<Producto> productoCreate(@Body Producto producto);
