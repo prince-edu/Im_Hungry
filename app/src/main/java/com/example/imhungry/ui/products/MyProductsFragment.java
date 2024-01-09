@@ -1,5 +1,6 @@
 package com.example.imhungry.ui.products;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import com.example.imhungry.HttpRequest.API;
 import com.example.imhungry.HttpRequest.ApiService;
 import com.example.imhungry.R;
 import com.example.imhungry.databinding.FragmentProductsBinding;
+import com.example.imhungry.gui.MainMenuCompradorActivity;
+
 import android.util.Base64;
 
 import java.util.ArrayList;
@@ -69,7 +72,7 @@ public class MyProductsFragment extends Fragment {
             @Override
             public void onResponse(Call<Producto[]> call, Response<Producto[]> response) {
                 if((response.body() == null)){
-                    mostrarToast("Ha ocurrido un error");
+                    mostrarToast("Ha ocurrido un errorr");
                 }else {
 
                     mostrarToast("Éxito");
@@ -107,8 +110,9 @@ public class MyProductsFragment extends Fragment {
                                     @Override
                                     public void onClick(View v) {
                                         // Acciones al hacer clic en un elemento
-                                        // Por ejemplo, mostrar un Toast con el nombre del producto
-                                        Toast.makeText(v.getContext(), "Producto: " + producto.getNombre(), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getActivity(), ViewProductActivity.class);
+                                        intent.putExtra("nombre", producto.getNombre());
+                                        startActivity(intent);
                                     }
                                 });
                             }

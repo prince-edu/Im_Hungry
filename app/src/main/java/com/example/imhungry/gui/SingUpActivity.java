@@ -2,6 +2,7 @@ package com.example.imhungry.gui;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -26,6 +27,7 @@ import com.example.imhungry.HttpRequest.ApiService;
 import com.example.imhungry.R;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -111,26 +113,21 @@ public class SingUpActivity extends AppCompatActivity {
 
                         if (data != null) {
                             Uri imagenSeleccionadaUri = data.getData();
-                            try {
 
-                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
 
-                                int anchoRedimensionado = bitmap.getWidth() / 2; // Establece el nuevo ancho deseado
-                                int altoRedimensionado = bitmap.getHeight() / 2; // Establece el nuevo alto deseado
-
-                                Bitmap bitmapRedimensionado = Bitmap.createScaledBitmap(bitmap, anchoRedimensionado, altoRedimensionado, true);
-
+                               /* Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
                                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                                bitmapRedimensionado.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
                                 byte[] byteArray = byteArrayOutputStream.toByteArray();
+                                String imagenString = new String(byteArray);
+                                fotoPerfil = imagenString;
+                                */
+                               //fotoPerfil = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                                fotoPerfil = "android.graphics.Bitmap@25e32";
 
-                                fotoPerfil = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-                               //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-                                //fotoPerfil = bitmap.toString();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+
+
                         }
                     }
                 });
@@ -141,26 +138,35 @@ public class SingUpActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         if (data != null) {
                             Uri imagenSeleccionadaUri = data.getData();
-                            try {
 
+                            try {
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
 
-                                int anchoRedimensionado = bitmap.getWidth() / 2; // Establece el nuevo ancho deseado
-                                int altoRedimensionado = bitmap.getHeight() / 2; // Establece el nuevo alto deseado
-
-                                Bitmap bitmapRedimensionado = Bitmap.createScaledBitmap(bitmap, anchoRedimensionado, altoRedimensionado, true);
-
+                                // Comprimir el bitmap en formato JPEG con calidad del 100%
                                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                                bitmapRedimensionado.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // Comprimir el bitmap en formato PNG
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+                                // Obtener el arreglo de bytes a partir del flujo de salida
                                 byte[] byteArray = byteArrayOutputStream.toByteArray();
 
-                                fotoCredencial = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                                // Convertir el arreglo de bytes a una cadena Base64
+                                String imagenString = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-                                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagenSeleccionadaUri);
-                                //fotoCredencial = bitmap.toString();
+                                // Aquí puedes utilizar la cadena 'imagenString' según tus necesidades
+                                fotoCredencial = imagenString;
+
+                                // Mostrar información de la imagen (puedes eliminar esta línea si no es necesaria)
+                                mostrarToast("Foto convertida a cadena: " + fotoCredencial);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                                mostrarToast("Error: No se pudo encontrar la imagen seleccionada");
                             } catch (IOException e) {
                                 e.printStackTrace();
+                                mostrarToast("Error de lectura al procesar la imagen");
                             }
+
+
+
                         }
                     }
                 });
@@ -192,23 +198,22 @@ public class SingUpActivity extends AppCompatActivity {
     }
 
     public void registrarEstudiante (Estudiante estudiante){
-
         ApiService apiService = retrofit.create(ApiService.class);
         Call<Estudiante> call = apiService.estudiantesCreate(estudiante);
         call.enqueue(new Callback<Estudiante>() {
             @Override
-            public void onResponse(Call<Estudiante> call, Response<Estudiante> response) {
+            public void onResponse(@NonNull Call<Estudiante> call, @NonNull Response<Estudiante> response) {
                 if(response.isSuccessful()){
                     mostrarToast("Registro éxitoso");
                     finish();
                 }else{
-                    mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tarde");
+                    mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tardee");
                 }
             }
 
             @Override
             public void onFailure(Call<Estudiante> call, Throwable t) {
-                mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tarde");
+                mostrarToast("Ha ocurrido un error, inténtelo de nuevo más tardeeee");
 
             }
         });
@@ -223,7 +228,7 @@ public class SingUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<EstudianteResponse> call, Response<EstudianteResponse> response) {
                 if((response.body().getEstudiante() == null)){
-                    registrarEstudiante(estudiante);
+                     registrarEstudiante(estudiante);
                 }else {
                     mostrarToast("La matrícula que has ingresado ya se encuentra registrada");
                 }

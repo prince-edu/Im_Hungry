@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,7 +13,14 @@
         android:roundIcon="@drawable/im_hungry_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.ImHungry"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.products.ReviewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.products.CreateReviewActivity"
+            android:exported="false" />
         <activity
             android:name=".gui.MainMenuVendedorActivity"
             android:exported="false" />
@@ -26,6 +32,9 @@
             android:exported="false" />
         <activity
             android:name=".gui.MainMenuCompradorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.products.ViewProductActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

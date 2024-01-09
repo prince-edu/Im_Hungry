@@ -3,6 +3,7 @@ package com.example.imhungry.HttpRequest;
 import com.example.imhungry.Domain.Estudiante;
 import com.example.imhungry.Domain.Comprador;
 import com.example.imhungry.Domain.EstudianteResponse;
+import com.example.imhungry.Domain.ProductoResponse;
 import com.example.imhungry.Domain.ProductosFavoritos;
 import com.example.imhungry.Domain.Pedido;
 import com.example.imhungry.Domain.Producto;
@@ -71,8 +72,9 @@ public interface ApiService {
     @GET("producto/")
     Call<Producto[]> productoGetAll();
 
-    @GET("producto/{name}")
-    Call<Producto> productoGetByName(@Path("name") String name);
+
+    @GET("producto/{nombre}")
+    Call<ProductoResponse> productoGetByName(@Path("nombre") String nombre);
 
     @POST("producto/")
     Call<Producto> productoCreate(@Body Producto producto);

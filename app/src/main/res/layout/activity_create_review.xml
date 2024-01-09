@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/im_hungry_dark_background"
+        tools:context=".ui.products.ViewProductActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/im_hungry_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="390dp"
+                android:layout_height="134dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/review"
+                android:textColor="@color/black"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="@+id/textView3"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
+                tools:ignore="TextContrastCheck,VisualLintOverlap" />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:text="@string/review"
+                android:textColor="@color/white"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/linearLayout"
+                tools:ignore="TextSizeCheck,TextContrastCheck" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintVertical_bias="0.56">
+
+                <ImageView
+                    android:id="@+id/image_view_producto"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/im_hungry_icon" />
+
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="310dp"
+                android:layout_height="298dp"
+                android:layout_marginTop="50dp"
+                android:alpha="0.7"
+                android:background="@drawable/im_hungry_solid_black_background"
+                app:cardCornerRadius="45sp"
+                app:cardElevation="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="299dp"
+                    android:importantForAccessibility="no"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/im_hungry_solid_black_background" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="298dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/descripcion_producto"
+                        android:layout_width="250dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:text="@string/calificación"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/calificacion_review"
+                        android:layout_width="73dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="120dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:background="@color/transparent"
+                        android:drawablePadding="12dp"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textColorHint="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+
+                    <TextView
+                        android:id="@+id/descripcion_review_producto"
+                        android:layout_width="250dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:text="@string/descripcion"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/descripcion_review"
+                        android:layout_width="250dp"
+                        android:layout_height="94dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:background="@color/transparent"
+                        android:drawablePadding="12dp"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textColorHint="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" >
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="150dp"
+                    android:background="@color/transparent"
+                    android:text="@string/send"
+                    tools:layout_editor_absoluteX="293dp"
+                    tools:layout_editor_absoluteY="637dp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

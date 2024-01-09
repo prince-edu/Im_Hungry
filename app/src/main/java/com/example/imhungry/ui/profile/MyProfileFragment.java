@@ -51,6 +51,7 @@ public class MyProfileFragment extends Fragment {
 
         binding = FragmentMyProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
         String matricula = LogInActivity.estudianteLogin.getMatricula();
         buscarEstudiante(matricula);
 
@@ -66,15 +67,6 @@ public class MyProfileFragment extends Fragment {
         binding = null;
     }
 
-    public void actualizarDatos(Bundle bundle) {
-        if (bundle != null) {
-            String tuStringRecibido = bundle.getString("matricula");
-            mostrarToast(tuStringRecibido);
-            mostrarToast(tuStringRecibido);
-
-            // Usa tu String recibido según necesites
-        }
-    }
     public void buscarEstudiante(String matricula){
 
         retrofit = new Retrofit.Builder()
@@ -124,7 +116,6 @@ public class MyProfileFragment extends Fragment {
         byte[] decodedString2 = Base64.decode(estudiante.getFotoPerfil(), Base64.DEFAULT);
         Bitmap bitmapPerfil = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString2.length);
         imageViewPerfil.setImageBitmap(bitmapPerfil);
-
     }
 
 

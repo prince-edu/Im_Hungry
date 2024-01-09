@@ -22,10 +22,6 @@
             android:icon="@drawable/outline_favorite_border_24"
             android:title="@string/menu_favorites" />
         <item
-            android:id="@+id/nav_my_chats"
-            android:icon="@drawable/outline_chat_24"
-            android:title="@string/chats"/>
-        <item
             android:id="@+id/log_out"
             android:icon="@drawable/baseline_logout_24"
             android:title="@string/log_out"/>
