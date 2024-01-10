@@ -7,8 +7,6 @@
 
     </data>
 
-
-
     <FrameLayout
         android:id="@+id/frame_layout_recycler_comprador"
         android:layout_width="match_parent"

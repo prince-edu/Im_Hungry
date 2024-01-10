@@ -98,7 +98,7 @@ public class ViewProductActivity extends AppCompatActivity {
         botonHacerPedido.setOnClickListener(v->{
             int idPedido = Integer.parseInt(randomIDNumerico(5));
 
-            Date fecha = new Date();
+            String fecha = new Date().toString();
 
 
             Pedido pedido = new Pedido(idPedido, "", fecha, precioProdcuto, "Pendiente", 0,

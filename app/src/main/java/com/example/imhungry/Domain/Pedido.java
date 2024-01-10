@@ -6,14 +6,14 @@ import java.util.Date;
 public class Pedido implements Serializable {
     private int idPedido;
     private String preferencias;
-    private Date fechaPedido;
+    private String fechaPedido;
     private Double precioTotal;
     private String estado;
     private int id_venta;
     private String matricula;
     private int id_producto;
 
-    public Pedido(int idPedido, String preferencias, Date fechaPedido, Double precioTotal,
+    public Pedido(int idPedido, String preferencias, String fechaPedido, Double precioTotal,
                   String estado, int id_venta, String matricula, int id_producto) {
         this.idPedido = idPedido;
         this.preferencias = preferencias;
@@ -41,11 +41,11 @@ public class Pedido implements Serializable {
         this.preferencias = preferencias;
     }
 
-    public Date getFechaPedido() {
+    public String getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
+    public void setFechaPedido(String fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
 

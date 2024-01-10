@@ -5,10 +5,10 @@ import java.util.Date;
 public class Venta {
     private int id_venta;
     private int cantidad;
-    private Date fecha_venta;
+    private String fecha_venta;
     private double precio_total;
 
-    public Venta(int id_venta, int cantidad, Date fecha_venta, double precio_total) {
+    public Venta(int id_venta, int cantidad, String fecha_venta, double precio_total) {
         this.id_venta = id_venta;
         this.cantidad = cantidad;
         this.fecha_venta = fecha_venta;
@@ -31,11 +31,11 @@ public class Venta {
         this.cantidad = cantidad;
     }
 
-    public Date getFecha_venta() {
+    public String getFecha_venta() {
         return fecha_venta;
     }
 
-    public void setFecha_venta(Date fecha_venta) {
+    public void setFecha_venta(String fecha_venta) {
         this.fecha_venta = fecha_venta;
     }
 

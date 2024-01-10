@@ -66,4 +66,9 @@
     <string name="send">Enviar</string>
     <string name="review">Review</string>
     <string name="preferencias">Preferencias</string>
+    <string name="menu_my_pedidos">Mis pedidos</string>
+    <string name="order">Pedido</string>
+    <string name="product">"Producto: "</string>
+    <string name="fecha">"Fecha: "</string>
+    <string name="nombre_comprador">"Comprador: "</string>
 </resources>
